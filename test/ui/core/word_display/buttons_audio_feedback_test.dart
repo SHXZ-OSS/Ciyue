@@ -1,7 +1,6 @@
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
 import "package:ciyue/ui/core/word_display/audio_waveform.dart";
 import "package:ciyue/ui/core/word_display/buttons.dart";
-import "package:ciyue/viewModels/ai_explanation.dart";
 import "package:ciyue/viewModels/audio.dart";
 import "package:flutter_test/flutter_test.dart";
 import "package:material_ui/material_ui.dart";
@@ -52,17 +51,11 @@ void main() {
         MultiProvider(
           providers: [
             ChangeNotifierProvider<AudioModel>.value(value: fakeAudioModel),
-            ChangeNotifierProvider(create: (_) => AIExplanationModel()),
           ],
           child: const MaterialApp(
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            home: Scaffold(
-              floatingActionButton: Button(
-                word: "sintonico",
-                showAIButtons: false,
-              ),
-            ),
+            home: Scaffold(floatingActionButton: Button(word: "sintonico")),
           ),
         ),
       );

@@ -17,7 +17,6 @@ import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.embedding.engine.FlutterEngineCache
 import io.flutter.embedding.engine.dart.DartExecutor
 import io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin
-import io.flutter.plugins.urllauncher.UrlLauncherPlugin
 import io.material.plugins.dynamic_color.DynamicColorPlugin
 import xyz.luan.audioplayers.AudioplayersPlugin
 
@@ -111,7 +110,6 @@ object FloatingWindowEngine {
             plugins.add(PermissionHandlerPlugin())
             plugins.add(SharedPreferencesPlugin())
             plugins.add(SharePlusPlugin())
-            plugins.add(UrlLauncherPlugin())
         }
     }
 

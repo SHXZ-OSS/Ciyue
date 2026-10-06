@@ -6,7 +6,6 @@ import "package:ciyue/core/providers.dart";
 import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/floating_window.dart";
 import "package:ciyue/ui/core/search_bar.dart";
-import "package:ciyue/ui/core/word_display/webview_helpers.dart";
 import "package:ciyue/ui/core/word_display/webview_widgets.dart";
 import "package:ciyue/utils.dart";
 import "package:material_ui/material_ui.dart";
@@ -58,7 +57,11 @@ Widget buildWebView(String word, int id, bool isExpansion) {
           } else if (isDesktop()) {
             return WebviewWindows(content: content, dictId: id);
           } else {
-            return FakeWebViewByAI(html: content);
+            // Platforms without WebView support: show the plain text.
+            return SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: SelectableText(content.replaceAll(RegExp(r"<[^>]*>"), "")),
+            );
           }
         },
         loading: () => const Center(child: CircularProgressIndicator()),

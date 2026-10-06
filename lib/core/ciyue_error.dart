@@ -1,6 +1,5 @@
 import "package:material_ui/material_ui.dart";
 import "package:flutter/services.dart";
-import "package:url_launcher/url_launcher.dart";
 
 class CiyueError extends StatelessWidget {
   final Object error;
@@ -17,15 +16,6 @@ class CiyueError extends StatelessWidget {
           children: [
             Text(error.toString()),
             const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                launchUrl(
-                  Uri.parse("https://github.com/mumu-lhl/ciyue/issues"),
-                );
-              },
-              child: const Text("Report Issue"),
-            ),
-            const SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: error.toString()));

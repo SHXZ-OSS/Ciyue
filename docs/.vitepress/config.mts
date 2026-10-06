@@ -17,6 +17,9 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Getting Started', link: '/guide/getting-started' },
+          { text: 'School Dictionary Library', link: '/guide/dict-library' },
+          { text: 'School Managed Deployment', link: '/guide/school-managed' },
+          { text: 'Cloud Sync', link: '/guide/cloud-sync' }
         ]
       }
     ],

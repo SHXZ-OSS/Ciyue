@@ -5,12 +5,11 @@ import "package:ciyue/core/app_globals.dart";
 import "package:ciyue/core/app_router.dart";
 import "package:ciyue/repositories/dictionary.dart";
 import "package:ciyue/repositories/settings.dart";
-import "package:ciyue/services/cloud_sync/configuration.dart";
 import "package:ciyue/services/hunspell.dart";
 import "package:ciyue/services/changelog.dart";
+import "package:ciyue/services/mdm/sync_service.dart";
 import "package:ciyue/services/platform.dart";
 import "package:ciyue/services/startup.dart";
-import "package:ciyue/services/updater.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
 import "package:ciyue/ui/core/changelog_dialog.dart";
 import "package:ciyue/utils.dart";
@@ -232,8 +231,11 @@ Future<void> initApp({bool isFloatingWindow = false}) async {
 
       packageInfo = await PackageInfo.fromPlatform();
 
-      if (settings.autoUpdate) {
-        Updater.autoUpdate();
+      // School record sync: runs silently on startup only when the student
+      // has already authorized in settings; it never requests authorization
+      // on its own.
+      if (Platform.isAndroid && settings.mdmAutoSync) {
+        unawaited(mdmSyncService.syncIfAuthorized(navigatorKey.currentContext));
       }
 
       if (await ChangelogService.shouldShowChangelog(locale)) {
@@ -347,9 +349,6 @@ Future<void> initApp({bool isFloatingWindow = false}) async {
 
 const preferencesAllowList = <String>{
   "currentDictionaryGroupId",
-  "exportDirectory",
-  "autoExport",
-  "exportFileName",
   "autoRemoveSearchWord",
   "language",
   "themeMode",
@@ -364,24 +363,12 @@ const preferencesAllowList = <String>{
   "searchBarInAppBar",
   "showSidebarIcon",
   "dictionariesDirectory",
-  "exportPath",
   "notification",
   "showMoreOptionsButton",
   "skipTaggedWord",
-  "aiProvider",
-  "aiProviderConfigs",
-  "aiProviderFetchedModels",
-  "aiExplainWord",
-  "includePrereleaseUpdates",
-
-  // AI Prompts
-  "customExplainPrompt",
-  "customTranslatePrompt",
-  "customWritingCheckPrompt",
 
   "tabBarPosition",
   "showSearchBarInWordDisplay",
-  "autoUpdate",
   "ttsEngine",
   "ttsLanguage",
   "audioDirectory",
@@ -391,15 +378,16 @@ const preferencesAllowList = <String>{
   "enableHistory",
   "versionCode",
   "dictionarySwitchStyle",
-  "translationProvider",
-  "deeplxUrl",
-  "isRichOutput",
-  "enableTranslationHistory",
-  "enableWritingCheckHistory",
   "autoFocusSearch",
   "launchAtStartup",
   "flashcardDailyNewLimit",
-  ...CloudSyncConfigurationStore.preferenceKeys,
+  "mdmAutoSync",
+  "mdm.sync.deviceId",
+  "mdm.sync.spaceId",
+  "mdm.sync.lastSuccessAt",
+  "mdm.oauth.tokenUserId",
+  "mdm.oauth.expiresAt",
+  "dictLibraryInstalled",
 };
 
 Future<void> initPrefs() async {

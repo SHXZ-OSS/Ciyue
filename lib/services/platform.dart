@@ -3,10 +3,9 @@ import "dart:async";
 import "package:ciyue/core/app_globals.dart";
 import "package:ciyue/core/app_router.dart";
 import "package:ciyue/services/audio.dart";
-import "package:ciyue/repositories/dictionary.dart";
 import "package:ciyue/ui/pages/main/main.dart";
+import "package:ciyue/repositories/dictionary.dart";
 import "package:ciyue/repositories/hunspell.dart";
-import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
 import "package:ciyue/utils.dart";
 import "package:ciyue/viewModels/home.dart";
@@ -70,14 +69,6 @@ void navigateToProcessText(String text, {int? requestId}) {
 
 class PlatformMethod {
   static void Function()? onHunspellDirectoryImported;
-
-  static Future<void> createFile(String content) async {
-    await _platform.invokeMethod("createFile", content);
-  }
-
-  static Future<void> getDirectory() async {
-    await _platform.invokeMethod("getDirectory");
-  }
 
   static void initHandler() {
     _platform.setMethodCallHandler((call) async {
@@ -145,12 +136,6 @@ class PlatformMethod {
             closeLoadingDialog(context);
           }
           talker.error("Failed to copy directory: ${call.arguments}");
-          break;
-
-        case "getDirectory":
-          final directory = call.arguments as String;
-          settings.exportDirectory = directory;
-          prefs.setString("exportDirectory", directory);
           break;
       }
     });
@@ -224,8 +209,38 @@ class PlatformMethod {
     }
   }
 
-  static Future<void> writeFile(Map<String, String?> info) async {
-    await _platform.invokeMethod("writeFile", info);
+  /// Queries the school MDM client for the currently logged-in student.
+  ///
+  /// Returns null when the MDM client is missing, the app is not in the
+  /// managed app list, or no student is logged in on the device.
+  static Future<Map<Object?, Object?>?> mdmIdentity() async {
+    try {
+      final result = await _platform.invokeMethod<Object?>("mdmIdentity");
+      if (result == null) return null;
+      return Map<Object?, Object?>.from(result as Map);
+    } on MissingPluginException {
+      return null;
+    } on PlatformException catch (error, stackTrace) {
+      talker.error("Failed to query MDM identity", error, stackTrace);
+      return null;
+    }
+  }
+
+  /// Starts the MDM OAuth authorization activity with PKCE parameters and
+  /// resolves with `{code, server_url, state}` after the student consents.
+  static Future<Map<Object?, Object?>?> mdmAuthorize(
+    Map<String, String?> arguments,
+  ) async {
+    try {
+      final result = await _platform.invokeMethod<Object?>(
+        "mdmAuthorize",
+        arguments,
+      );
+      if (result == null) return null;
+      return Map<Object?, Object?>.from(result as Map);
+    } on MissingPluginException {
+      return null;
+    }
   }
 
   static final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =

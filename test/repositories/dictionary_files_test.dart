@@ -1,6 +1,7 @@
 import "dart:io";
 
 import "package:ciyue/repositories/dictionary.dart";
+import "package:path/path.dart" as p;
 import "package:test/test.dart";
 
 void main() {
@@ -27,9 +28,12 @@ void main() {
     ]);
 
     expect(
-      result,
-      [firstDictionary.path, nestedDictionary.path, secondDictionary.path]
-        ..sort(),
+      result.map(p.normalize),
+      ([
+        firstDictionary.path,
+        nestedDictionary.path,
+        secondDictionary.path,
+      ].map(p.normalize).toList()..sort()),
     );
   });
 

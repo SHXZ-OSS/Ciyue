@@ -30,13 +30,13 @@ class _BottomSearchBarState extends State<BottomSearchBar> {
       return const SizedBox.shrink();
     }
 
-    if (!settings.searchBarInAppBar || settings.aiExplainWord) {
+    if (!settings.searchBarInAppBar) {
       context.read<DictManagerModel>().checkIsEmpty();
 
       return Selector<DictManagerModel, bool>(
         selector: (_, model) => model.isEmpty,
         builder: (_, isEmpty, _) {
-          if (isEmpty && !settings.aiExplainWord) {
+          if (isEmpty) {
             return const SizedBox.shrink();
           }
 

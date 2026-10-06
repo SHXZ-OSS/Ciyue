@@ -131,54 +131,6 @@ class MddAudioResourceDaoManager {
       );
 }
 
-mixin _$AiExplanationDaoMixin on DatabaseAccessor<AppDatabase> {
-  $AiExplanationsTable get aiExplanations => attachedDatabase.aiExplanations;
-  AiExplanationDaoManager get managers => AiExplanationDaoManager(this);
-}
-
-class AiExplanationDaoManager {
-  final _$AiExplanationDaoMixin _db;
-  AiExplanationDaoManager(this._db);
-  $$AiExplanationsTableTableManager get aiExplanations =>
-      $$AiExplanationsTableTableManager(
-        _db.attachedDatabase,
-        _db.aiExplanations,
-      );
-}
-
-mixin _$WritingCheckHistoryDaoMixin on DatabaseAccessor<AppDatabase> {
-  $WritingCheckHistoryTable get writingCheckHistory =>
-      attachedDatabase.writingCheckHistory;
-  WritingCheckHistoryDaoManager get managers =>
-      WritingCheckHistoryDaoManager(this);
-}
-
-class WritingCheckHistoryDaoManager {
-  final _$WritingCheckHistoryDaoMixin _db;
-  WritingCheckHistoryDaoManager(this._db);
-  $$WritingCheckHistoryTableTableManager get writingCheckHistory =>
-      $$WritingCheckHistoryTableTableManager(
-        _db.attachedDatabase,
-        _db.writingCheckHistory,
-      );
-}
-
-mixin _$TranslateHistoryDaoMixin on DatabaseAccessor<AppDatabase> {
-  $TranslateHistoryTable get translateHistory =>
-      attachedDatabase.translateHistory;
-  TranslateHistoryDaoManager get managers => TranslateHistoryDaoManager(this);
-}
-
-class TranslateHistoryDaoManager {
-  final _$TranslateHistoryDaoMixin _db;
-  TranslateHistoryDaoManager(this._db);
-  $$TranslateHistoryTableTableManager get translateHistory =>
-      $$TranslateHistoryTableTableManager(
-        _db.attachedDatabase,
-        _db.translateHistory,
-      );
-}
-
 mixin _$OpenRecordsDaoMixin on DatabaseAccessor<AppDatabase> {
   $OpenRecordsTable get openRecords => attachedDatabase.openRecords;
   OpenRecordsDaoManager get managers => OpenRecordsDaoManager(this);

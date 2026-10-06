@@ -1,4 +1,0 @@
-updates:
-  baseUrl: https://mumulhl.eu.org/Ciyue/updates/
-  channel: stable
-  output: dist/desktop_updater

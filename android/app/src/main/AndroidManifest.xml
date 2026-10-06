@@ -110,5 +110,9 @@
         <intent>
             <action android:name="android.support.customtabs.action.CustomTabsService" />
         </intent>
+        <!-- School MDM client (com.shxzhy.mdm): OAuth SSO host and identity
+             provider. Required for package visibility on Android 11+. -->
+        <provider android:authorities="com.shxzhy.mdm.info" />
+        <package android:name="com.shxzhy.mdm" />
     </queries>
 </manifest>

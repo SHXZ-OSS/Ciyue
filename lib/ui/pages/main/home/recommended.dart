@@ -1,6 +1,6 @@
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
 import "package:material_ui/material_ui.dart";
-import "package:url_launcher/url_launcher.dart";
+import "package:go_router/go_router.dart";
 
 class RecommendedDictionaries extends StatelessWidget {
   const RecommendedDictionaries({super.key});
@@ -16,26 +16,10 @@ class RecommendedDictionaries extends StatelessWidget {
         children: [
           Text(locale!.addDictionary),
           const SizedBox(height: 16),
-          ElevatedButton(
-            child: Text(locale.recommendedDictionaries),
-            onPressed: () async {
-              await launchUrl(
-                Uri.parse(
-                  "https://github.com/mumu-lhl/Ciyue/wiki#recommended-dictionaries",
-                ),
-              );
-            },
-          ),
-          const SizedBox(height: 8),
-          ElevatedButton(
-            child: const Text("FreeMDict Cloud"),
-            onPressed: () async {
-              await launchUrl(
-                Uri.parse(
-                  "https://cloud.freemdict.com/index.php/s/pgKcDcbSDTCzXCs",
-                ),
-              );
-            },
+          ElevatedButton.icon(
+            icon: const Icon(Icons.cloud_download),
+            label: Text(locale.dictLibrary),
+            onPressed: () => context.push("/settings/dict_library"),
           ),
         ],
       ),

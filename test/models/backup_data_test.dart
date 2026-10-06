@@ -12,17 +12,6 @@ void main() {
       final words = [WordbookData(createdAt: now, tag: 1, word: "test")];
       final tags = [const WordbookTag(id: 1, tag: "tag1")];
       final history = ["history1", "history2"];
-      final writingCheckHistory = [
-        WritingCheckHistoryData(
-          id: 1,
-          inputText: "input",
-          outputText: "output",
-          createdAt: now,
-        ),
-      ];
-      final translateHistory = [
-        TranslateHistoryData(id: 1, inputText: "input", createdAt: now),
-      ];
       final flashcards = [
         Flashcard(
           word: "test",
@@ -50,8 +39,6 @@ void main() {
         wordbookWords: words,
         wordbookTags: tags,
         history: history,
-        writingCheckHistory: writingCheckHistory,
-        translateHistory: translateHistory,
         flashcards: flashcards,
         flashcardReviewLogs: flashcardReviewLogs,
       );
@@ -63,8 +50,6 @@ void main() {
       expect(decoded["wordbookWords"].length, 1);
       expect(decoded["wordbookTags"].length, 1);
       expect(decoded["history"].length, 2);
-      expect(decoded["writingCheckHistory"].length, 1);
-      expect(decoded["translateHistory"].length, 1);
       expect(decoded["flashcards"].length, 1);
       expect(decoded["flashcardReviewLogs"].length, 1);
 
@@ -88,8 +73,6 @@ void main() {
 
       expect(importedData.wordbookTags.first.tag, "tag1");
       expect(importedData.history, equals(history));
-      expect(importedData.writingCheckHistory.first.inputText, "input");
-      expect(importedData.translateHistory.first.inputText, "input");
       expect(importedData.flashcards.single.word, "test");
       expect(importedData.flashcardReviewLogs.single.rating, 2);
     });

@@ -67,7 +67,6 @@ void main() {
         ..port = 1;
     }
     settings.dictionarySwitchStyle = DictionarySwitchStyle.tag;
-    settings.aiExplainWord = false;
   });
 
   tearDown(() {
@@ -120,9 +119,7 @@ void main() {
     );
   }
 
-  testWidgets("WordDisplay opens initialDictId tab without AI", (tester) async {
-    settings.aiExplainWord = false;
-
+  testWidgets("WordDisplay opens initialDictId tab", (tester) async {
     await tester.pumpWidget(
       buildTestWidget(initialLocation: "/word/apple?dictId=20"),
     );
@@ -135,29 +132,9 @@ void main() {
     expect(tabController.initialIndex, equals(1));
   });
 
-  testWidgets("WordDisplay opens initialDictId tab with AI offset", (
-    tester,
-  ) async {
-    settings.aiExplainWord = true;
-
-    await tester.pumpWidget(
-      buildTestWidget(initialLocation: "/word/apple?dictId=20"),
-    );
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 100));
-
-    final tabController = tester.widget<DefaultTabController>(
-      find.byType(DefaultTabController),
-    );
-    // AI is at index 0, dict 10 is at 1, dict 20 is at 2
-    expect(tabController.initialIndex, equals(2));
-  });
-
   testWidgets("WordDisplay falls back to 0 when initialDictId is not found", (
     tester,
   ) async {
-    settings.aiExplainWord = false;
-
     await tester.pumpWidget(
       buildTestWidget(initialLocation: "/word/apple?dictId=999"),
     );
@@ -173,8 +150,6 @@ void main() {
   testWidgets("WordDisplay falls back to 0 when initialDictId is null", (
     tester,
   ) async {
-    settings.aiExplainWord = false;
-
     await tester.pumpWidget(buildTestWidget(initialLocation: "/word/apple"));
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
@@ -188,8 +163,6 @@ void main() {
   testWidgets("pushing /word route with dictId selects target dict tab", (
     tester,
   ) async {
-    settings.aiExplainWord = false;
-
     late BuildContext currentContext;
     final testRouter = GoRouter(
       initialLocation: "/word/apple",

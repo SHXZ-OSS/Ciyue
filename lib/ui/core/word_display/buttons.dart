@@ -1,12 +1,8 @@
 import "package:ciyue/core/app_globals.dart";
-import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/audio.dart";
-import "package:ciyue/services/backup.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
 import "package:ciyue/ui/core/tags_list.dart";
-import "package:ciyue/ui/core/word_display/ai_widgets.dart";
 import "package:ciyue/ui/core/word_display/audio_waveform.dart";
-import "package:ciyue/viewModels/ai_explanation.dart";
 import "package:ciyue/viewModels/audio.dart";
 import "package:ciyue/viewModels/wordbook.dart";
 import "package:material_ui/material_ui.dart";
@@ -15,9 +11,8 @@ import "package:provider/provider.dart";
 
 class Button extends StatefulWidget {
   final String word;
-  final bool showAIButtons;
 
-  const Button({super.key, required this.word, this.showAIButtons = false});
+  const Button({super.key, required this.word});
 
   @override
   State<Button> createState() => _ButtonState();
@@ -26,28 +21,11 @@ class Button extends StatefulWidget {
 class _ButtonState extends State<Button> {
   Future<bool>? stared;
 
-  Future<void> autoExport() async {
-    if (settings.autoExport &&
-        (settings.exportDirectory != null || settings.exportPath != null)) {
-      Backup.export(true);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        if (widget.showAIButtons) RefreshAIExplainButton(word: widget.word),
-        if (widget.showAIButtons)
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: EditAIExplainButton(
-              word: widget.word,
-              initialExplanation:
-                  context.watch<AIExplanationModel>().explanation ?? "",
-            ),
-          ),
         Padding(
           padding: const EdgeInsets.only(top: 8.0),
           child: buildReadLoudlyButton(context, widget.word),
@@ -130,7 +108,6 @@ class _ButtonState extends State<Button> {
                 await context.read<WordbookModel>().add(widget.word);
               }
 
-              await autoExport();
               checkStared();
             }
 
@@ -170,8 +147,6 @@ class _ButtonState extends State<Button> {
                             context.pop();
                           }
 
-                          await autoExport();
-
                           checkStared();
                         },
                       ),
@@ -205,8 +180,6 @@ class _ButtonState extends State<Button> {
                           if (context.mounted) {
                             context.pop();
                           }
-
-                          await autoExport();
 
                           checkStared();
                         },

@@ -364,7 +364,7 @@
   "@sponsorSupportTip": {},
   "sponsorCodes": "贊助碼",
   "@sponsorCodes": {},
-    "wechat": "微信",
+  "wechat": "微信",
   "@wechat": {},
   "pressAgainToExit": "再按一次退出",
   "@pressAgainToExit": {},
@@ -385,5 +385,47 @@
   "noDictionariesFound": "找不到詞典",
   "@noDictionariesFound": {},
   "exitApp": "退出應用程式",
-  "@exitApp": {}
+  "@exitApp": {},
+  "dictLibrary": "詞典庫",
+  "@dictLibrary": {},
+  "dictLibraryLoadFailed": "詞典庫載入失敗",
+  "@dictLibraryLoadFailed": {},
+  "dictInstallFailed": "詞典安裝失敗",
+  "@dictInstallFailed": {},
+  "installedSuccessfully": "安裝成功",
+  "@installedSuccessfully": {},
+  "installed": "已安裝",
+  "@installed": {},
+  "download": "下載",
+  "@download": {},
+  "retry": "重試",
+  "@retry": {},
+  "schoolSync": "學校同步",
+  "@schoolSync": {},
+  "schoolSyncNotManaged": "本裝置未接入學校管理，或目前沒有學生登入。請先在學校裝置管理應用中登入。",
+  "@schoolSyncNotManaged": {},
+  "schoolSyncAndroidOnly": "學校同步僅在校管安卓裝置上可用。",
+  "@schoolSyncAndroidOnly": {},
+  "loggedInAs": "已登入：{username}",
+  "@loggedInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "立即同步",
+  "@syncNow": {},
+  "syncOnStartup": "啟動時同步",
+  "@syncOnStartup": {},
+  "syncCompleted": "同步完成",
+  "@syncCompleted": {},
+  "lastSync": "上次同步",
+  "@lastSync": {},
+  "neverSynced": "從未同步",
+  "@neverSynced": {},
+  "logout": "登出",
+  "@logout": {},
+  "authorizeAndSync": "授權並同步",
+  "@authorizeAndSync": {}
 }

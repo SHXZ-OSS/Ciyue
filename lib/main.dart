@@ -5,8 +5,6 @@ import "package:ciyue/core/app_initialization.dart";
 import "package:ciyue/core/app_router.dart";
 import "package:ciyue/core/ciyue_error.dart";
 import "package:ciyue/core/localization_delegates.dart";
-import "package:ciyue/database/app/daos.dart";
-import "package:ciyue/repositories/ai_prompts.dart";
 import "package:ciyue/repositories/open_records.dart";
 import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/floating_window.dart";
@@ -59,14 +57,9 @@ void main() async {
             provider.ChangeNotifierProvider(
               create: (_) => AudioModel()..init(),
             ),
-            provider.ChangeNotifierProvider(create: (_) => AIPrompts()),
             provider.ChangeNotifierProvider(
               create: (_) => SelectionTextViewModel(),
             ),
-            provider.Provider(
-              create: (_) => WritingCheckHistoryDao(mainDatabase),
-            ),
-            provider.Provider(create: (_) => TranslateHistoryDao(mainDatabase)),
             provider.Provider(create: (_) => OpenRecordsRepository()),
           ],
           child: const Ciyue(),

@@ -3,13 +3,10 @@ import "dart:io";
 
 import "package:ciyue/core/app_globals.dart";
 import "package:ciyue/core/app_router.dart";
-import "package:ciyue/repositories/dictionary.dart";
-import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/floating_window.dart";
 import "package:ciyue/ui/pages/main/home/app_bar.dart";
 import "package:ciyue/ui/pages/main/home/drawer.dart";
 import "package:ciyue/ui/pages/main/home/scaffold.dart";
-import "package:ciyue/ui/pages/translate/translate_page.dart";
 import "package:ciyue/ui/pages/main/settings.dart";
 import "package:ciyue/ui/pages/main/wordbook.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
@@ -55,14 +52,10 @@ class _HomeState extends State<Home> {
     FocusScope(canRequestFocus: _currentIndex == 0, child: const HomeScreen()),
     FocusScope(
       canRequestFocus: _currentIndex == 1,
-      child: const AiTranslatePage(),
-    ),
-    FocusScope(
-      canRequestFocus: _currentIndex == 2,
       child: const WordBookScreen(),
     ),
     FocusScope(
-      canRequestFocus: _currentIndex == 3,
+      canRequestFocus: _currentIndex == 2,
       child: const SettingsScreen(),
     ),
   ];
@@ -125,11 +118,9 @@ class _HomeState extends State<Home> {
         child: Scaffold(
           key: _scaffoldKey,
           appBar: _currentIndex == 0
-              ? PreferredSize(
-                  preferredSize: const Size.fromHeight(kToolbarHeight),
-                  child: (!dictManager.isEmpty || settings.aiExplainWord)
-                      ? const HomeAppBar()
-                      : const SizedBox.shrink(),
+              ? const PreferredSize(
+                  preferredSize: Size.fromHeight(kToolbarHeight),
+                  child: HomeAppBar(),
                 )
               : null,
           drawer: _currentIndex == 0 && !historyModel.isSelecting
@@ -210,7 +201,6 @@ class _HomeState extends State<Home> {
   List<(Icon, String)> buildCommonDestinations() {
     return [
       (const Icon(Icons.home), AppLocalizations.of(context)!.home),
-      (const Icon(Icons.translate), AppLocalizations.of(context)!.translate),
       (const Icon(Icons.book), AppLocalizations.of(context)!.wordBook),
       (const Icon(Icons.settings), AppLocalizations.of(context)!.settings),
     ];

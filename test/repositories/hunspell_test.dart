@@ -1,6 +1,7 @@
 import "dart:io";
 
 import "package:ciyue/repositories/hunspell.dart";
+import "package:path/path.dart" as p;
 import "package:test/test.dart";
 
 void main() {
@@ -19,9 +20,9 @@ void main() {
     final pairs = await findHunspellPairs(directory);
 
     expect(pairs.map((pair) => pair.name), ["de_DE", "en_US"]);
-    expect(pairs.map((pair) => pair.affPath), [
-      "${languageDirectory.path}/de_DE.AFF",
-      "${languageDirectory.path}/en_US.aff",
+    expect(pairs.map((pair) => p.normalize(pair.affPath)), [
+      p.normalize("${languageDirectory.path}/de_DE.AFF"),
+      p.normalize("${languageDirectory.path}/en_US.aff"),
     ]);
   });
 }

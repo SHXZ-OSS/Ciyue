@@ -15,6 +15,6 @@ features:
     details: Thousands of dictionaries
   - title: Support Material You
     details: Beautiful!
-  - title: AI Translate
-    details: Also a translator
+  - title: School Managed
+    details: Dictionary library and record sync for managed devices
 ---

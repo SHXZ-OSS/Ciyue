@@ -65,25 +65,6 @@ class WordbookTags extends Table {
   TextColumn get tag => text().unique()();
 }
 
-@TableIndex(name: "idx_ai_explanations", columns: {#word})
-class AiExplanations extends Table {
-  TextColumn get word => text().unique()();
-  TextColumn get explanation => text()();
-}
-
-class WritingCheckHistory extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  TextColumn get inputText => text()();
-  TextColumn get outputText => text()();
-  DateTimeColumn get createdAt => dateTime()();
-}
-
-class TranslateHistory extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  TextColumn get inputText => text()();
-  DateTimeColumn get createdAt => dateTime()();
-}
-
 @TableIndex(name: "idx_open_records", columns: {#word, #createdAt})
 class OpenRecords extends Table {
   IntColumn get id => integer().autoIncrement()();

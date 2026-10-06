@@ -377,5 +377,47 @@
   "noDictionariesFound": "未找到词典",
   "@noDictionariesFound": {},
   "exitApp": "退出应用",
-  "@exitApp": {}
+  "@exitApp": {},
+  "dictLibrary": "词典库",
+  "@dictLibrary": {},
+  "dictLibraryLoadFailed": "词典库加载失败",
+  "@dictLibraryLoadFailed": {},
+  "dictInstallFailed": "词典安装失败",
+  "@dictInstallFailed": {},
+  "installedSuccessfully": "安装成功",
+  "@installedSuccessfully": {},
+  "installed": "已安装",
+  "@installed": {},
+  "download": "下载",
+  "@download": {},
+  "retry": "重试",
+  "@retry": {},
+  "schoolSync": "学校同步",
+  "@schoolSync": {},
+  "schoolSyncNotManaged": "本设备未接入学校管理，或当前没有学生登录。请先在学校设备管理应用中登录。",
+  "@schoolSyncNotManaged": {},
+  "schoolSyncAndroidOnly": "学校同步仅在校管安卓设备上可用。",
+  "@schoolSyncAndroidOnly": {},
+  "loggedInAs": "已登录：{username}",
+  "@loggedInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "立即同步",
+  "@syncNow": {},
+  "syncOnStartup": "启动时同步",
+  "@syncOnStartup": {},
+  "syncCompleted": "同步完成",
+  "@syncCompleted": {},
+  "lastSync": "上次同步",
+  "@lastSync": {},
+  "neverSynced": "从未同步",
+  "@neverSynced": {},
+  "logout": "退出登录",
+  "@logout": {},
+  "authorizeAndSync": "授权并同步",
+  "@authorizeAndSync": {}
 }

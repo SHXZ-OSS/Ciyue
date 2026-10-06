@@ -2575,802 +2575,6 @@ class MddAudioResourceCompanion
   }
 }
 
-class $AiExplanationsTable extends AiExplanations
-    with drift.TableInfo<$AiExplanationsTable, AiExplanation> {
-  @override
-  final drift.GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $AiExplanationsTable(this.attachedDatabase, [this._alias]);
-  static const drift.VerificationMeta _wordMeta = const drift.VerificationMeta(
-    'word',
-  );
-  @override
-  late final drift.GeneratedColumn<String> word = drift.GeneratedColumn<String>(
-    'word',
-    aliasedName,
-    false,
-    type: DriftSqlType.string,
-    requiredDuringInsert: true,
-    defaultConstraints: GeneratedColumn.constraintIsAlways('UNIQUE'),
-  );
-  static const drift.VerificationMeta _explanationMeta =
-      const drift.VerificationMeta('explanation');
-  @override
-  late final drift.GeneratedColumn<String> explanation =
-      drift.GeneratedColumn<String>(
-        'explanation',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
-  @override
-  List<drift.GeneratedColumn> get $columns => [word, explanation];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'ai_explanations';
-  @override
-  drift.VerificationContext validateIntegrity(
-    drift.Insertable<AiExplanation> instance, {
-    bool isInserting = false,
-  }) {
-    final context = drift.VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('word')) {
-      context.handle(
-        _wordMeta,
-        word.isAcceptableOrUnknown(data['word']!, _wordMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_wordMeta);
-    }
-    if (data.containsKey('explanation')) {
-      context.handle(
-        _explanationMeta,
-        explanation.isAcceptableOrUnknown(
-          data['explanation']!,
-          _explanationMeta,
-        ),
-      );
-    } else if (isInserting) {
-      context.missing(_explanationMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<drift.GeneratedColumn> get $primaryKey => const {};
-  @override
-  AiExplanation map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return AiExplanation(
-      word: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}word'],
-      )!,
-      explanation: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}explanation'],
-      )!,
-    );
-  }
-
-  @override
-  $AiExplanationsTable createAlias(String alias) {
-    return $AiExplanationsTable(attachedDatabase, alias);
-  }
-}
-
-class AiExplanation extends drift.DataClass
-    implements drift.Insertable<AiExplanation> {
-  final String word;
-  final String explanation;
-  const AiExplanation({required this.word, required this.explanation});
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    map['word'] = drift.Variable<String>(word);
-    map['explanation'] = drift.Variable<String>(explanation);
-    return map;
-  }
-
-  AiExplanationsCompanion toCompanion(bool nullToAbsent) {
-    return AiExplanationsCompanion(
-      word: drift.Value(word),
-      explanation: drift.Value(explanation),
-    );
-  }
-
-  factory AiExplanation.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return AiExplanation(
-      word: serializer.fromJson<String>(json['word']),
-      explanation: serializer.fromJson<String>(json['explanation']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'word': serializer.toJson<String>(word),
-      'explanation': serializer.toJson<String>(explanation),
-    };
-  }
-
-  AiExplanation copyWith({String? word, String? explanation}) => AiExplanation(
-    word: word ?? this.word,
-    explanation: explanation ?? this.explanation,
-  );
-  AiExplanation copyWithCompanion(AiExplanationsCompanion data) {
-    return AiExplanation(
-      word: data.word.present ? data.word.value : this.word,
-      explanation: data.explanation.present
-          ? data.explanation.value
-          : this.explanation,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('AiExplanation(')
-          ..write('word: $word, ')
-          ..write('explanation: $explanation')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(word, explanation);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is AiExplanation &&
-          other.word == this.word &&
-          other.explanation == this.explanation);
-}
-
-class AiExplanationsCompanion extends drift.UpdateCompanion<AiExplanation> {
-  final drift.Value<String> word;
-  final drift.Value<String> explanation;
-  final drift.Value<int> rowid;
-  const AiExplanationsCompanion({
-    this.word = const drift.Value.absent(),
-    this.explanation = const drift.Value.absent(),
-    this.rowid = const drift.Value.absent(),
-  });
-  AiExplanationsCompanion.insert({
-    required String word,
-    required String explanation,
-    this.rowid = const drift.Value.absent(),
-  }) : word = drift.Value(word),
-       explanation = drift.Value(explanation);
-  static drift.Insertable<AiExplanation> custom({
-    drift.Expression<String>? word,
-    drift.Expression<String>? explanation,
-    drift.Expression<int>? rowid,
-  }) {
-    return drift.RawValuesInsertable({
-      if (word != null) 'word': word,
-      if (explanation != null) 'explanation': explanation,
-      if (rowid != null) 'rowid': rowid,
-    });
-  }
-
-  AiExplanationsCompanion copyWith({
-    drift.Value<String>? word,
-    drift.Value<String>? explanation,
-    drift.Value<int>? rowid,
-  }) {
-    return AiExplanationsCompanion(
-      word: word ?? this.word,
-      explanation: explanation ?? this.explanation,
-      rowid: rowid ?? this.rowid,
-    );
-  }
-
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    if (word.present) {
-      map['word'] = drift.Variable<String>(word.value);
-    }
-    if (explanation.present) {
-      map['explanation'] = drift.Variable<String>(explanation.value);
-    }
-    if (rowid.present) {
-      map['rowid'] = drift.Variable<int>(rowid.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('AiExplanationsCompanion(')
-          ..write('word: $word, ')
-          ..write('explanation: $explanation, ')
-          ..write('rowid: $rowid')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class $WritingCheckHistoryTable extends WritingCheckHistory
-    with drift.TableInfo<$WritingCheckHistoryTable, WritingCheckHistoryData> {
-  @override
-  final drift.GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $WritingCheckHistoryTable(this.attachedDatabase, [this._alias]);
-  static const drift.VerificationMeta _idMeta = const drift.VerificationMeta(
-    'id',
-  );
-  @override
-  late final drift.GeneratedColumn<int> id = drift.GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const drift.VerificationMeta _inputTextMeta =
-      const drift.VerificationMeta('inputText');
-  @override
-  late final drift.GeneratedColumn<String> inputText =
-      drift.GeneratedColumn<String>(
-        'input_text',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
-  static const drift.VerificationMeta _outputTextMeta =
-      const drift.VerificationMeta('outputText');
-  @override
-  late final drift.GeneratedColumn<String> outputText =
-      drift.GeneratedColumn<String>(
-        'output_text',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
-  static const drift.VerificationMeta _createdAtMeta =
-      const drift.VerificationMeta('createdAt');
-  @override
-  late final drift.GeneratedColumn<DateTime> createdAt =
-      drift.GeneratedColumn<DateTime>(
-        'created_at',
-        aliasedName,
-        false,
-        type: DriftSqlType.dateTime,
-        requiredDuringInsert: true,
-      );
-  @override
-  List<drift.GeneratedColumn> get $columns => [
-    id,
-    inputText,
-    outputText,
-    createdAt,
-  ];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'writing_check_history';
-  @override
-  drift.VerificationContext validateIntegrity(
-    drift.Insertable<WritingCheckHistoryData> instance, {
-    bool isInserting = false,
-  }) {
-    final context = drift.VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('input_text')) {
-      context.handle(
-        _inputTextMeta,
-        inputText.isAcceptableOrUnknown(data['input_text']!, _inputTextMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_inputTextMeta);
-    }
-    if (data.containsKey('output_text')) {
-      context.handle(
-        _outputTextMeta,
-        outputText.isAcceptableOrUnknown(data['output_text']!, _outputTextMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_outputTextMeta);
-    }
-    if (data.containsKey('created_at')) {
-      context.handle(
-        _createdAtMeta,
-        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_createdAtMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<drift.GeneratedColumn> get $primaryKey => {id};
-  @override
-  WritingCheckHistoryData map(
-    Map<String, dynamic> data, {
-    String? tablePrefix,
-  }) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return WritingCheckHistoryData(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      inputText: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}input_text'],
-      )!,
-      outputText: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}output_text'],
-      )!,
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-    );
-  }
-
-  @override
-  $WritingCheckHistoryTable createAlias(String alias) {
-    return $WritingCheckHistoryTable(attachedDatabase, alias);
-  }
-}
-
-class WritingCheckHistoryData extends drift.DataClass
-    implements drift.Insertable<WritingCheckHistoryData> {
-  final int id;
-  final String inputText;
-  final String outputText;
-  final DateTime createdAt;
-  const WritingCheckHistoryData({
-    required this.id,
-    required this.inputText,
-    required this.outputText,
-    required this.createdAt,
-  });
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    map['id'] = drift.Variable<int>(id);
-    map['input_text'] = drift.Variable<String>(inputText);
-    map['output_text'] = drift.Variable<String>(outputText);
-    map['created_at'] = drift.Variable<DateTime>(createdAt);
-    return map;
-  }
-
-  WritingCheckHistoryCompanion toCompanion(bool nullToAbsent) {
-    return WritingCheckHistoryCompanion(
-      id: drift.Value(id),
-      inputText: drift.Value(inputText),
-      outputText: drift.Value(outputText),
-      createdAt: drift.Value(createdAt),
-    );
-  }
-
-  factory WritingCheckHistoryData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return WritingCheckHistoryData(
-      id: serializer.fromJson<int>(json['id']),
-      inputText: serializer.fromJson<String>(json['inputText']),
-      outputText: serializer.fromJson<String>(json['outputText']),
-      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'inputText': serializer.toJson<String>(inputText),
-      'outputText': serializer.toJson<String>(outputText),
-      'createdAt': serializer.toJson<DateTime>(createdAt),
-    };
-  }
-
-  WritingCheckHistoryData copyWith({
-    int? id,
-    String? inputText,
-    String? outputText,
-    DateTime? createdAt,
-  }) => WritingCheckHistoryData(
-    id: id ?? this.id,
-    inputText: inputText ?? this.inputText,
-    outputText: outputText ?? this.outputText,
-    createdAt: createdAt ?? this.createdAt,
-  );
-  WritingCheckHistoryData copyWithCompanion(WritingCheckHistoryCompanion data) {
-    return WritingCheckHistoryData(
-      id: data.id.present ? data.id.value : this.id,
-      inputText: data.inputText.present ? data.inputText.value : this.inputText,
-      outputText: data.outputText.present
-          ? data.outputText.value
-          : this.outputText,
-      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('WritingCheckHistoryData(')
-          ..write('id: $id, ')
-          ..write('inputText: $inputText, ')
-          ..write('outputText: $outputText, ')
-          ..write('createdAt: $createdAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(id, inputText, outputText, createdAt);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is WritingCheckHistoryData &&
-          other.id == this.id &&
-          other.inputText == this.inputText &&
-          other.outputText == this.outputText &&
-          other.createdAt == this.createdAt);
-}
-
-class WritingCheckHistoryCompanion
-    extends drift.UpdateCompanion<WritingCheckHistoryData> {
-  final drift.Value<int> id;
-  final drift.Value<String> inputText;
-  final drift.Value<String> outputText;
-  final drift.Value<DateTime> createdAt;
-  const WritingCheckHistoryCompanion({
-    this.id = const drift.Value.absent(),
-    this.inputText = const drift.Value.absent(),
-    this.outputText = const drift.Value.absent(),
-    this.createdAt = const drift.Value.absent(),
-  });
-  WritingCheckHistoryCompanion.insert({
-    this.id = const drift.Value.absent(),
-    required String inputText,
-    required String outputText,
-    required DateTime createdAt,
-  }) : inputText = drift.Value(inputText),
-       outputText = drift.Value(outputText),
-       createdAt = drift.Value(createdAt);
-  static drift.Insertable<WritingCheckHistoryData> custom({
-    drift.Expression<int>? id,
-    drift.Expression<String>? inputText,
-    drift.Expression<String>? outputText,
-    drift.Expression<DateTime>? createdAt,
-  }) {
-    return drift.RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (inputText != null) 'input_text': inputText,
-      if (outputText != null) 'output_text': outputText,
-      if (createdAt != null) 'created_at': createdAt,
-    });
-  }
-
-  WritingCheckHistoryCompanion copyWith({
-    drift.Value<int>? id,
-    drift.Value<String>? inputText,
-    drift.Value<String>? outputText,
-    drift.Value<DateTime>? createdAt,
-  }) {
-    return WritingCheckHistoryCompanion(
-      id: id ?? this.id,
-      inputText: inputText ?? this.inputText,
-      outputText: outputText ?? this.outputText,
-      createdAt: createdAt ?? this.createdAt,
-    );
-  }
-
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    if (id.present) {
-      map['id'] = drift.Variable<int>(id.value);
-    }
-    if (inputText.present) {
-      map['input_text'] = drift.Variable<String>(inputText.value);
-    }
-    if (outputText.present) {
-      map['output_text'] = drift.Variable<String>(outputText.value);
-    }
-    if (createdAt.present) {
-      map['created_at'] = drift.Variable<DateTime>(createdAt.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('WritingCheckHistoryCompanion(')
-          ..write('id: $id, ')
-          ..write('inputText: $inputText, ')
-          ..write('outputText: $outputText, ')
-          ..write('createdAt: $createdAt')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class $TranslateHistoryTable extends TranslateHistory
-    with drift.TableInfo<$TranslateHistoryTable, TranslateHistoryData> {
-  @override
-  final drift.GeneratedDatabase attachedDatabase;
-  final String? _alias;
-  $TranslateHistoryTable(this.attachedDatabase, [this._alias]);
-  static const drift.VerificationMeta _idMeta = const drift.VerificationMeta(
-    'id',
-  );
-  @override
-  late final drift.GeneratedColumn<int> id = drift.GeneratedColumn<int>(
-    'id',
-    aliasedName,
-    false,
-    hasAutoIncrement: true,
-    type: DriftSqlType.int,
-    requiredDuringInsert: false,
-    defaultConstraints: GeneratedColumn.constraintIsAlways(
-      'PRIMARY KEY AUTOINCREMENT',
-    ),
-  );
-  static const drift.VerificationMeta _inputTextMeta =
-      const drift.VerificationMeta('inputText');
-  @override
-  late final drift.GeneratedColumn<String> inputText =
-      drift.GeneratedColumn<String>(
-        'input_text',
-        aliasedName,
-        false,
-        type: DriftSqlType.string,
-        requiredDuringInsert: true,
-      );
-  static const drift.VerificationMeta _createdAtMeta =
-      const drift.VerificationMeta('createdAt');
-  @override
-  late final drift.GeneratedColumn<DateTime> createdAt =
-      drift.GeneratedColumn<DateTime>(
-        'created_at',
-        aliasedName,
-        false,
-        type: DriftSqlType.dateTime,
-        requiredDuringInsert: true,
-      );
-  @override
-  List<drift.GeneratedColumn> get $columns => [id, inputText, createdAt];
-  @override
-  String get aliasedName => _alias ?? actualTableName;
-  @override
-  String get actualTableName => $name;
-  static const String $name = 'translate_history';
-  @override
-  drift.VerificationContext validateIntegrity(
-    drift.Insertable<TranslateHistoryData> instance, {
-    bool isInserting = false,
-  }) {
-    final context = drift.VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('input_text')) {
-      context.handle(
-        _inputTextMeta,
-        inputText.isAcceptableOrUnknown(data['input_text']!, _inputTextMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_inputTextMeta);
-    }
-    if (data.containsKey('created_at')) {
-      context.handle(
-        _createdAtMeta,
-        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
-      );
-    } else if (isInserting) {
-      context.missing(_createdAtMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<drift.GeneratedColumn> get $primaryKey => {id};
-  @override
-  TranslateHistoryData map(Map<String, dynamic> data, {String? tablePrefix}) {
-    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return TranslateHistoryData(
-      id: attachedDatabase.typeMapping.read(
-        DriftSqlType.int,
-        data['${effectivePrefix}id'],
-      )!,
-      inputText: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}input_text'],
-      )!,
-      createdAt: attachedDatabase.typeMapping.read(
-        DriftSqlType.dateTime,
-        data['${effectivePrefix}created_at'],
-      )!,
-    );
-  }
-
-  @override
-  $TranslateHistoryTable createAlias(String alias) {
-    return $TranslateHistoryTable(attachedDatabase, alias);
-  }
-}
-
-class TranslateHistoryData extends drift.DataClass
-    implements drift.Insertable<TranslateHistoryData> {
-  final int id;
-  final String inputText;
-  final DateTime createdAt;
-  const TranslateHistoryData({
-    required this.id,
-    required this.inputText,
-    required this.createdAt,
-  });
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    map['id'] = drift.Variable<int>(id);
-    map['input_text'] = drift.Variable<String>(inputText);
-    map['created_at'] = drift.Variable<DateTime>(createdAt);
-    return map;
-  }
-
-  TranslateHistoryCompanion toCompanion(bool nullToAbsent) {
-    return TranslateHistoryCompanion(
-      id: drift.Value(id),
-      inputText: drift.Value(inputText),
-      createdAt: drift.Value(createdAt),
-    );
-  }
-
-  factory TranslateHistoryData.fromJson(
-    Map<String, dynamic> json, {
-    ValueSerializer? serializer,
-  }) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return TranslateHistoryData(
-      id: serializer.fromJson<int>(json['id']),
-      inputText: serializer.fromJson<String>(json['inputText']),
-      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= drift.driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'inputText': serializer.toJson<String>(inputText),
-      'createdAt': serializer.toJson<DateTime>(createdAt),
-    };
-  }
-
-  TranslateHistoryData copyWith({
-    int? id,
-    String? inputText,
-    DateTime? createdAt,
-  }) => TranslateHistoryData(
-    id: id ?? this.id,
-    inputText: inputText ?? this.inputText,
-    createdAt: createdAt ?? this.createdAt,
-  );
-  TranslateHistoryData copyWithCompanion(TranslateHistoryCompanion data) {
-    return TranslateHistoryData(
-      id: data.id.present ? data.id.value : this.id,
-      inputText: data.inputText.present ? data.inputText.value : this.inputText,
-      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
-    );
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('TranslateHistoryData(')
-          ..write('id: $id, ')
-          ..write('inputText: $inputText, ')
-          ..write('createdAt: $createdAt')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(id, inputText, createdAt);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is TranslateHistoryData &&
-          other.id == this.id &&
-          other.inputText == this.inputText &&
-          other.createdAt == this.createdAt);
-}
-
-class TranslateHistoryCompanion
-    extends drift.UpdateCompanion<TranslateHistoryData> {
-  final drift.Value<int> id;
-  final drift.Value<String> inputText;
-  final drift.Value<DateTime> createdAt;
-  const TranslateHistoryCompanion({
-    this.id = const drift.Value.absent(),
-    this.inputText = const drift.Value.absent(),
-    this.createdAt = const drift.Value.absent(),
-  });
-  TranslateHistoryCompanion.insert({
-    this.id = const drift.Value.absent(),
-    required String inputText,
-    required DateTime createdAt,
-  }) : inputText = drift.Value(inputText),
-       createdAt = drift.Value(createdAt);
-  static drift.Insertable<TranslateHistoryData> custom({
-    drift.Expression<int>? id,
-    drift.Expression<String>? inputText,
-    drift.Expression<DateTime>? createdAt,
-  }) {
-    return drift.RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (inputText != null) 'input_text': inputText,
-      if (createdAt != null) 'created_at': createdAt,
-    });
-  }
-
-  TranslateHistoryCompanion copyWith({
-    drift.Value<int>? id,
-    drift.Value<String>? inputText,
-    drift.Value<DateTime>? createdAt,
-  }) {
-    return TranslateHistoryCompanion(
-      id: id ?? this.id,
-      inputText: inputText ?? this.inputText,
-      createdAt: createdAt ?? this.createdAt,
-    );
-  }
-
-  @override
-  Map<String, drift.Expression> toColumns(bool nullToAbsent) {
-    final map = <String, drift.Expression>{};
-    if (id.present) {
-      map['id'] = drift.Variable<int>(id.value);
-    }
-    if (inputText.present) {
-      map['input_text'] = drift.Variable<String>(inputText.value);
-    }
-    if (createdAt.present) {
-      map['created_at'] = drift.Variable<DateTime>(createdAt.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('TranslateHistoryCompanion(')
-          ..write('id: $id, ')
-          ..write('inputText: $inputText, ')
-          ..write('createdAt: $createdAt')
-          ..write(')'))
-        .toString();
-  }
-}
-
 class $OpenRecordsTable extends OpenRecords
     with drift.TableInfo<$OpenRecordsTable, OpenRecord> {
   @override
@@ -4528,12 +3732,6 @@ abstract class _$AppDatabase extends drift.GeneratedDatabase {
   late final $MddAudioResourceTable mddAudioResource = $MddAudioResourceTable(
     this,
   );
-  late final $AiExplanationsTable aiExplanations = $AiExplanationsTable(this);
-  late final $WritingCheckHistoryTable writingCheckHistory =
-      $WritingCheckHistoryTable(this);
-  late final $TranslateHistoryTable translateHistory = $TranslateHistoryTable(
-    this,
-  );
   late final $OpenRecordsTable openRecords = $OpenRecordsTable(this);
   late final $FlashcardsTable flashcards = $FlashcardsTable(this);
   late final $FlashcardReviewLogsTable flashcardReviewLogs =
@@ -4549,10 +3747,6 @@ abstract class _$AppDatabase extends drift.GeneratedDatabase {
   late final drift.Index idxMddAudioResource = drift.Index(
     'idx_mdd_audio_resource',
     'CREATE INDEX idx_mdd_audio_resource ON mdd_audio_resource ("key")',
-  );
-  late final drift.Index idxAiExplanations = drift.Index(
-    'idx_ai_explanations',
-    'CREATE INDEX idx_ai_explanations ON ai_explanations (word)',
   );
   late final drift.Index idxOpenRecords = drift.Index(
     'idx_open_records',
@@ -4584,14 +3778,6 @@ abstract class _$AppDatabase extends drift.GeneratedDatabase {
   late final MddAudioResourceDao mddAudioResourceDao = MddAudioResourceDao(
     this as AppDatabase,
   );
-  late final AiExplanationDao aiExplanationDao = AiExplanationDao(
-    this as AppDatabase,
-  );
-  late final WritingCheckHistoryDao writingCheckHistoryDao =
-      WritingCheckHistoryDao(this as AppDatabase);
-  late final TranslateHistoryDao translateHistoryDao = TranslateHistoryDao(
-    this as AppDatabase,
-  );
   late final OpenRecordsDao openRecordsDao = OpenRecordsDao(
     this as AppDatabase,
   );
@@ -4609,16 +3795,12 @@ abstract class _$AppDatabase extends drift.GeneratedDatabase {
     dictGroup,
     mddAudioList,
     mddAudioResource,
-    aiExplanations,
-    writingCheckHistory,
-    translateHistory,
     openRecords,
     flashcards,
     flashcardReviewLogs,
     idxWordbook,
     idxWordbookTags,
     idxMddAudioResource,
-    idxAiExplanations,
     idxOpenRecords,
     idxFlashcardsDue,
     idxFlashcardReviewLogsWord,
@@ -4821,7 +4003,14 @@ class $$DictionaryListTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$DictionaryListTable, DictionaryListData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $DictionaryListTable,
+                    DictionaryListData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5086,7 +4275,14 @@ class $$HunspellSourceTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$HunspellSourceTable, HunspellSourceData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $HunspellSourceTable,
+                    HunspellSourceData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5252,7 +4448,14 @@ class $$WordbookTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$WordbookTable, WordbookData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $WordbookTable,
+                    WordbookData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5384,7 +4587,14 @@ class $$WordbookTagsTableTableManager
           }) => WordbookTagsCompanion.insert(id: id, tag: tag),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$WordbookTagsTable, WordbookTag>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $WordbookTagsTable,
+                    WordbookTag
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5513,7 +4723,14 @@ class $$HistoryTableTableManager
           }) => HistoryCompanion.insert(id: id, word: word),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$HistoryTable, HistoryData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $HistoryTable,
+                    HistoryData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5659,7 +4876,14 @@ class $$DictGroupTableTableManager
           }) => DictGroupCompanion.insert(dictIds: dictIds, id: id, name: name),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$DictGroupTable, DictGroupData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $DictGroupTable,
+                    DictGroupData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -5840,7 +5064,14 @@ class $$MddAudioListTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$MddAudioListTable, MddAudioListData>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $MddAudioListTable,
+                    MddAudioListData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -6079,7 +5310,16 @@ class $$MddAudioResourceTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$MddAudioResourceTable, MddAudioResourceData>(
+                    table,
+                  ),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $MddAudioResourceTable,
+                    MddAudioResourceData
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -6106,526 +5346,6 @@ typedef $$MddAudioResourceTableProcessedTableManager =
         >,
       ),
       MddAudioResourceData,
-      drift.PrefetchHooks Function()
-    >;
-typedef $$AiExplanationsTableCreateCompanionBuilder =
-    AiExplanationsCompanion Function({
-      required String word,
-      required String explanation,
-      drift.Value<int> rowid,
-    });
-typedef $$AiExplanationsTableUpdateCompanionBuilder =
-    AiExplanationsCompanion Function({
-      drift.Value<String> word,
-      drift.Value<String> explanation,
-      drift.Value<int> rowid,
-    });
-
-class $$AiExplanationsTableFilterComposer
-    extends drift.Composer<_$AppDatabase, $AiExplanationsTable> {
-  $$AiExplanationsTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnFilters<String> get word => $composableBuilder(
-    column: $table.word,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<String> get explanation => $composableBuilder(
-    column: $table.explanation,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-}
-
-class $$AiExplanationsTableOrderingComposer
-    extends drift.Composer<_$AppDatabase, $AiExplanationsTable> {
-  $$AiExplanationsTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnOrderings<String> get word => $composableBuilder(
-    column: $table.word,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<String> get explanation => $composableBuilder(
-    column: $table.explanation,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-}
-
-class $$AiExplanationsTableAnnotationComposer
-    extends drift.Composer<_$AppDatabase, $AiExplanationsTable> {
-  $$AiExplanationsTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.GeneratedColumn<String> get word =>
-      $composableBuilder(column: $table.word, builder: (column) => column);
-
-  drift.GeneratedColumn<String> get explanation => $composableBuilder(
-    column: $table.explanation,
-    builder: (column) => column,
-  );
-}
-
-class $$AiExplanationsTableTableManager
-    extends
-        drift.RootTableManager<
-          _$AppDatabase,
-          $AiExplanationsTable,
-          AiExplanation,
-          $$AiExplanationsTableFilterComposer,
-          $$AiExplanationsTableOrderingComposer,
-          $$AiExplanationsTableAnnotationComposer,
-          $$AiExplanationsTableCreateCompanionBuilder,
-          $$AiExplanationsTableUpdateCompanionBuilder,
-          (
-            AiExplanation,
-            drift.BaseReferences<
-              _$AppDatabase,
-              $AiExplanationsTable,
-              AiExplanation
-            >,
-          ),
-          AiExplanation,
-          drift.PrefetchHooks Function()
-        > {
-  $$AiExplanationsTableTableManager(
-    _$AppDatabase db,
-    $AiExplanationsTable table,
-  ) : super(
-        drift.TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$AiExplanationsTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$AiExplanationsTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$AiExplanationsTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                drift.Value<String> word = const drift.Value.absent(),
-                drift.Value<String> explanation = const drift.Value.absent(),
-                drift.Value<int> rowid = const drift.Value.absent(),
-              }) => AiExplanationsCompanion(
-                word: word,
-                explanation: explanation,
-                rowid: rowid,
-              ),
-          createCompanionCallback:
-              ({
-                required String word,
-                required String explanation,
-                drift.Value<int> rowid = const drift.Value.absent(),
-              }) => AiExplanationsCompanion.insert(
-                word: word,
-                explanation: explanation,
-                rowid: rowid,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
-              )
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$AiExplanationsTableProcessedTableManager =
-    drift.ProcessedTableManager<
-      _$AppDatabase,
-      $AiExplanationsTable,
-      AiExplanation,
-      $$AiExplanationsTableFilterComposer,
-      $$AiExplanationsTableOrderingComposer,
-      $$AiExplanationsTableAnnotationComposer,
-      $$AiExplanationsTableCreateCompanionBuilder,
-      $$AiExplanationsTableUpdateCompanionBuilder,
-      (
-        AiExplanation,
-        drift.BaseReferences<
-          _$AppDatabase,
-          $AiExplanationsTable,
-          AiExplanation
-        >,
-      ),
-      AiExplanation,
-      drift.PrefetchHooks Function()
-    >;
-typedef $$WritingCheckHistoryTableCreateCompanionBuilder =
-    WritingCheckHistoryCompanion Function({
-      drift.Value<int> id,
-      required String inputText,
-      required String outputText,
-      required DateTime createdAt,
-    });
-typedef $$WritingCheckHistoryTableUpdateCompanionBuilder =
-    WritingCheckHistoryCompanion Function({
-      drift.Value<int> id,
-      drift.Value<String> inputText,
-      drift.Value<String> outputText,
-      drift.Value<DateTime> createdAt,
-    });
-
-class $$WritingCheckHistoryTableFilterComposer
-    extends drift.Composer<_$AppDatabase, $WritingCheckHistoryTable> {
-  $$WritingCheckHistoryTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<String> get inputText => $composableBuilder(
-    column: $table.inputText,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<String> get outputText => $composableBuilder(
-    column: $table.outputText,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-}
-
-class $$WritingCheckHistoryTableOrderingComposer
-    extends drift.Composer<_$AppDatabase, $WritingCheckHistoryTable> {
-  $$WritingCheckHistoryTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<String> get inputText => $composableBuilder(
-    column: $table.inputText,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<String> get outputText => $composableBuilder(
-    column: $table.outputText,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-}
-
-class $$WritingCheckHistoryTableAnnotationComposer
-    extends drift.Composer<_$AppDatabase, $WritingCheckHistoryTable> {
-  $$WritingCheckHistoryTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  drift.GeneratedColumn<String> get inputText =>
-      $composableBuilder(column: $table.inputText, builder: (column) => column);
-
-  drift.GeneratedColumn<String> get outputText => $composableBuilder(
-    column: $table.outputText,
-    builder: (column) => column,
-  );
-
-  drift.GeneratedColumn<DateTime> get createdAt =>
-      $composableBuilder(column: $table.createdAt, builder: (column) => column);
-}
-
-class $$WritingCheckHistoryTableTableManager
-    extends
-        drift.RootTableManager<
-          _$AppDatabase,
-          $WritingCheckHistoryTable,
-          WritingCheckHistoryData,
-          $$WritingCheckHistoryTableFilterComposer,
-          $$WritingCheckHistoryTableOrderingComposer,
-          $$WritingCheckHistoryTableAnnotationComposer,
-          $$WritingCheckHistoryTableCreateCompanionBuilder,
-          $$WritingCheckHistoryTableUpdateCompanionBuilder,
-          (
-            WritingCheckHistoryData,
-            drift.BaseReferences<
-              _$AppDatabase,
-              $WritingCheckHistoryTable,
-              WritingCheckHistoryData
-            >,
-          ),
-          WritingCheckHistoryData,
-          drift.PrefetchHooks Function()
-        > {
-  $$WritingCheckHistoryTableTableManager(
-    _$AppDatabase db,
-    $WritingCheckHistoryTable table,
-  ) : super(
-        drift.TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$WritingCheckHistoryTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$WritingCheckHistoryTableOrderingComposer(
-                $db: db,
-                $table: table,
-              ),
-          createComputedFieldComposer: () =>
-              $$WritingCheckHistoryTableAnnotationComposer(
-                $db: db,
-                $table: table,
-              ),
-          updateCompanionCallback:
-              ({
-                drift.Value<int> id = const drift.Value.absent(),
-                drift.Value<String> inputText = const drift.Value.absent(),
-                drift.Value<String> outputText = const drift.Value.absent(),
-                drift.Value<DateTime> createdAt = const drift.Value.absent(),
-              }) => WritingCheckHistoryCompanion(
-                id: id,
-                inputText: inputText,
-                outputText: outputText,
-                createdAt: createdAt,
-              ),
-          createCompanionCallback:
-              ({
-                drift.Value<int> id = const drift.Value.absent(),
-                required String inputText,
-                required String outputText,
-                required DateTime createdAt,
-              }) => WritingCheckHistoryCompanion.insert(
-                id: id,
-                inputText: inputText,
-                outputText: outputText,
-                createdAt: createdAt,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
-              )
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$WritingCheckHistoryTableProcessedTableManager =
-    drift.ProcessedTableManager<
-      _$AppDatabase,
-      $WritingCheckHistoryTable,
-      WritingCheckHistoryData,
-      $$WritingCheckHistoryTableFilterComposer,
-      $$WritingCheckHistoryTableOrderingComposer,
-      $$WritingCheckHistoryTableAnnotationComposer,
-      $$WritingCheckHistoryTableCreateCompanionBuilder,
-      $$WritingCheckHistoryTableUpdateCompanionBuilder,
-      (
-        WritingCheckHistoryData,
-        drift.BaseReferences<
-          _$AppDatabase,
-          $WritingCheckHistoryTable,
-          WritingCheckHistoryData
-        >,
-      ),
-      WritingCheckHistoryData,
-      drift.PrefetchHooks Function()
-    >;
-typedef $$TranslateHistoryTableCreateCompanionBuilder =
-    TranslateHistoryCompanion Function({
-      drift.Value<int> id,
-      required String inputText,
-      required DateTime createdAt,
-    });
-typedef $$TranslateHistoryTableUpdateCompanionBuilder =
-    TranslateHistoryCompanion Function({
-      drift.Value<int> id,
-      drift.Value<String> inputText,
-      drift.Value<DateTime> createdAt,
-    });
-
-class $$TranslateHistoryTableFilterComposer
-    extends drift.Composer<_$AppDatabase, $TranslateHistoryTable> {
-  $$TranslateHistoryTableFilterComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<String> get inputText => $composableBuilder(
-    column: $table.inputText,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-
-  drift.ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => drift.ColumnFilters(column),
-  );
-}
-
-class $$TranslateHistoryTableOrderingComposer
-    extends drift.Composer<_$AppDatabase, $TranslateHistoryTable> {
-  $$TranslateHistoryTableOrderingComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<String> get inputText => $composableBuilder(
-    column: $table.inputText,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-
-  drift.ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => drift.ColumnOrderings(column),
-  );
-}
-
-class $$TranslateHistoryTableAnnotationComposer
-    extends drift.Composer<_$AppDatabase, $TranslateHistoryTable> {
-  $$TranslateHistoryTableAnnotationComposer({
-    required super.$db,
-    required super.$table,
-    super.joinBuilder,
-    super.$addJoinBuilderToRootComposer,
-    super.$removeJoinBuilderFromRootComposer,
-  });
-  drift.GeneratedColumn<int> get id =>
-      $composableBuilder(column: $table.id, builder: (column) => column);
-
-  drift.GeneratedColumn<String> get inputText =>
-      $composableBuilder(column: $table.inputText, builder: (column) => column);
-
-  drift.GeneratedColumn<DateTime> get createdAt =>
-      $composableBuilder(column: $table.createdAt, builder: (column) => column);
-}
-
-class $$TranslateHistoryTableTableManager
-    extends
-        drift.RootTableManager<
-          _$AppDatabase,
-          $TranslateHistoryTable,
-          TranslateHistoryData,
-          $$TranslateHistoryTableFilterComposer,
-          $$TranslateHistoryTableOrderingComposer,
-          $$TranslateHistoryTableAnnotationComposer,
-          $$TranslateHistoryTableCreateCompanionBuilder,
-          $$TranslateHistoryTableUpdateCompanionBuilder,
-          (
-            TranslateHistoryData,
-            drift.BaseReferences<
-              _$AppDatabase,
-              $TranslateHistoryTable,
-              TranslateHistoryData
-            >,
-          ),
-          TranslateHistoryData,
-          drift.PrefetchHooks Function()
-        > {
-  $$TranslateHistoryTableTableManager(
-    _$AppDatabase db,
-    $TranslateHistoryTable table,
-  ) : super(
-        drift.TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$TranslateHistoryTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$TranslateHistoryTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$TranslateHistoryTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                drift.Value<int> id = const drift.Value.absent(),
-                drift.Value<String> inputText = const drift.Value.absent(),
-                drift.Value<DateTime> createdAt = const drift.Value.absent(),
-              }) => TranslateHistoryCompanion(
-                id: id,
-                inputText: inputText,
-                createdAt: createdAt,
-              ),
-          createCompanionCallback:
-              ({
-                drift.Value<int> id = const drift.Value.absent(),
-                required String inputText,
-                required DateTime createdAt,
-              }) => TranslateHistoryCompanion.insert(
-                id: id,
-                inputText: inputText,
-                createdAt: createdAt,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
-              )
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
-}
-
-typedef $$TranslateHistoryTableProcessedTableManager =
-    drift.ProcessedTableManager<
-      _$AppDatabase,
-      $TranslateHistoryTable,
-      TranslateHistoryData,
-      $$TranslateHistoryTableFilterComposer,
-      $$TranslateHistoryTableOrderingComposer,
-      $$TranslateHistoryTableAnnotationComposer,
-      $$TranslateHistoryTableCreateCompanionBuilder,
-      $$TranslateHistoryTableUpdateCompanionBuilder,
-      (
-        TranslateHistoryData,
-        drift.BaseReferences<
-          _$AppDatabase,
-          $TranslateHistoryTable,
-          TranslateHistoryData
-        >,
-      ),
-      TranslateHistoryData,
       drift.PrefetchHooks Function()
     >;
 typedef $$OpenRecordsTableCreateCompanionBuilder =
@@ -6756,7 +5476,14 @@ class $$OpenRecordsTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$OpenRecordsTable, OpenRecord>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $OpenRecordsTable,
+                    OpenRecord
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -7019,7 +5746,14 @@ class $$FlashcardsTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$FlashcardsTable, Flashcard>(table),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $FlashcardsTable,
+                    Flashcard
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -7231,7 +5965,16 @@ class $$FlashcardReviewLogsTableTableManager
               ),
           withReferenceMapper: (p0) => p0
               .map(
-                (e) => (e.readTable(table), drift.BaseReferences(db, table, e)),
+                (e) => (
+                  e.readTable<$FlashcardReviewLogsTable, FlashcardReviewLog>(
+                    table,
+                  ),
+                  drift.BaseReferences<
+                    _$AppDatabase,
+                    $FlashcardReviewLogsTable,
+                    FlashcardReviewLog
+                  >(db, table, e),
+                ),
               )
               .toList(),
           prefetchHooksCallback: null,
@@ -7280,12 +6023,6 @@ class $AppDatabaseManager {
       $$MddAudioListTableTableManager(_db, _db.mddAudioList);
   $$MddAudioResourceTableTableManager get mddAudioResource =>
       $$MddAudioResourceTableTableManager(_db, _db.mddAudioResource);
-  $$AiExplanationsTableTableManager get aiExplanations =>
-      $$AiExplanationsTableTableManager(_db, _db.aiExplanations);
-  $$WritingCheckHistoryTableTableManager get writingCheckHistory =>
-      $$WritingCheckHistoryTableTableManager(_db, _db.writingCheckHistory);
-  $$TranslateHistoryTableTableManager get translateHistory =>
-      $$TranslateHistoryTableTableManager(_db, _db.translateHistory);
   $$OpenRecordsTableTableManager get openRecords =>
       $$OpenRecordsTableTableManager(_db, _db.openRecords);
   $$FlashcardsTableTableManager get flashcards =>

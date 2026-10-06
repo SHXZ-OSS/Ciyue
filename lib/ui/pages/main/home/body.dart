@@ -3,7 +3,6 @@ import "package:ciyue/viewModels/home.dart";
 import "package:material_ui/material_ui.dart";
 import "package:provider/provider.dart";
 
-import "actions.dart";
 import "history.dart";
 import "search.dart";
 
@@ -17,12 +16,7 @@ class HomeBody extends StatelessWidget {
 
     return const Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        ActionButtons(),
-        HistoryLabel(),
-        HistoryList(),
-        BottomSearchBar(),
-      ],
+      children: [HistoryLabel(), HistoryList(), BottomSearchBar()],
     );
   }
 }

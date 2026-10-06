@@ -1,6 +1,7 @@
 package org.eu.mumulhl.ciyue
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Handler
 import android.os.Looper
@@ -24,6 +25,10 @@ class EngineConfigurator(context: Context) {
     private var nextProcessTextId = 0L
     var exportContent = ""
 
+    // Pending result of an in-flight MDM OAuth authorization; the school MDM
+    // client returns the authorization code through the launching activity.
+    private var pendingMdmOAuthResult: MethodChannel.Result? = null
+
     private data class ProcessTextRequest(val id: Long, val text: String) {
         fun toMap(): Map<String, Any> = mapOf("id" to id, "text" to text)
     }
@@ -36,6 +41,9 @@ class EngineConfigurator(context: Context) {
         fun onGetDirectory() {}
         fun onSetSecureFlag(secure: Boolean) {}
         fun onDismissFloatingWindow() {}
+
+        /** Starts the MDM OAuth consent activity; false when unavailable. */
+        fun onMdmAuthorize(arguments: Map<*, *>): Boolean = false
     }
 
     var callback: Callback? = null
@@ -107,6 +115,31 @@ class EngineConfigurator(context: Context) {
                         val uri = (call.arguments as String).toUri()
                         copyDirectory(uri, "dictionaries")
                         result.success(0)
+                    }
+
+                    "mdmIdentity" -> {
+                        result.success(readMdmIdentity())
+                    }
+
+                    "mdmAuthorize" -> {
+                        val arguments = call.arguments as? Map<*, *>
+                        if (arguments == null) {
+                            result.error("invalid_request", "Missing arguments", null)
+                        } else {
+                            pendingMdmOAuthResult?.let {
+                                it.error("another_in_progress", "Authorization already running", null)
+                            }
+                            val currentCallback = callback
+                            if (currentCallback == null) {
+                                result.error("mdm_unavailable", "No activity", null)
+                            } else {
+                                pendingMdmOAuthResult = result
+                                if (!currentCallback.onMdmAuthorize(arguments)) {
+                                    pendingMdmOAuthResult = null
+                                    result.error("mdm_unavailable", "MDM client not installed", null)
+                                }
+                            }
+                        }
                     }
 
                     else -> result.notImplemented()
@@ -186,9 +219,70 @@ class EngineConfigurator(context: Context) {
     fun dispose() {
         mainHandler.removeCallbacksAndMessages(null)
         ioExecutor.shutdownNow()
+        pendingMdmOAuthResult = null
         methodChannel?.setMethodCallHandler(null)
         methodChannel = null
         callback = null
+    }
+
+    /** Reads the logged-in student identity from the school MDM client. */
+    private fun readMdmIdentity(): Map<String, Any>? {
+        return try {
+            val bundle = context.contentResolver.call(
+                Uri.parse("content://com.shxzhy.mdm.info"),
+                "identity",
+                null,
+                null
+            ) ?: return null
+            val userId = bundle.getInt("user_id", -1)
+            val name = bundle.getString("name")
+            val username = bundle.getString("username")
+            val serverUrl = bundle.getString("server_url")
+            if (userId == -1 || name == null || username == null || serverUrl == null) {
+                null
+            } else {
+                mapOf(
+                    "user_id" to userId,
+                    "name" to name,
+                    "username" to username,
+                    "server_url" to serverUrl
+                )
+            }
+        } catch (error: Exception) {
+            null
+        }
+    }
+
+    /** Resolves the pending OAuth authorization once the MDM activity returns. */
+    fun onMdmOAuthResult(resultCode: Int, data: Intent?) {
+        val pending = pendingMdmOAuthResult ?: return
+        pendingMdmOAuthResult = null
+        if (resultCode == android.app.Activity.RESULT_OK) {
+            val code = data?.getStringExtra("code")
+            if (code == null) {
+                pending.error("invalid_response", "No authorization code", null)
+                return
+            }
+            pending.success(
+                mapOf(
+                    "code" to code,
+                    "server_url" to (data.getStringExtra("server_url") ?: ""),
+                    "state" to (data.getStringExtra("state") ?: "")
+                )
+            )
+        } else {
+            onMdmOAuthError(
+                data?.getStringExtra("error") ?: "access_denied",
+                data?.getStringExtra("error_description")
+            )
+        }
+    }
+
+    /** Fails the pending OAuth authorization with [error]. */
+    fun onMdmOAuthError(error: String, errorDescription: String?) {
+        val pending = pendingMdmOAuthResult ?: return
+        pendingMdmOAuthResult = null
+        pending.error(error, errorDescription, null)
     }
 
     fun handleProcessText(text: String) {

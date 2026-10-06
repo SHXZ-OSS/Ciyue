@@ -24,6 +24,10 @@ class MainActivity : FlutterActivity() {
         const val REQUEST_OVERLAY_PERMISSION = 3
         const val OPEN_AUDIO_DOCUMENT_TREE = 4
         const val OPEN_HUNSPELL_DOCUMENT_TREE = 5
+        const val REQUEST_MDM_OAUTH = 6
+
+        const val MDM_PACKAGE = "com.shxzhy.mdm"
+        const val MDM_OAUTH_ACTIVITY = "com.shxzhy.mdm.ui.oauth.OAuthAuthorizeActivity"
     }
 
     private lateinit var configurator: EngineConfigurator
@@ -78,6 +82,14 @@ class MainActivity : FlutterActivity() {
     ) {
         super.onActivityResult(requestCode, resultCode, data)
 
+        when (requestCode) {
+            REQUEST_MDM_OAUTH -> {
+                ensureConfigurator()
+                configurator.onMdmOAuthResult(resultCode, data)
+                return
+            }
+        }
+
         if (resultCode == RESULT_OK) {
             when (requestCode) {
                 OPEN_DICTIONARY_DOCUMENT_TREE -> openDocumentTree(data, "dictionaries")
@@ -87,6 +99,26 @@ class MainActivity : FlutterActivity() {
                 GET_DIRECTORY -> getDirectoryHandler(data)
                 REQUEST_OVERLAY_PERMISSION -> {}
             }
+        }
+    }
+
+    /** Launches the school MDM OAuth consent activity with PKCE parameters.
+     *  Returns false when the MDM client is not installed. */
+    private fun startMdmAuthorize(arguments: Map<*, *>): Boolean {
+        val intent = Intent().apply {
+            setClassName(MDM_PACKAGE, MDM_OAUTH_ACTIVITY)
+            putExtra("client_id", arguments["client_id"] as String)
+            putExtra("redirect_uri", arguments["redirect_uri"] as String)
+            putExtra("code_challenge", arguments["code_challenge"] as String)
+            putExtra("code_challenge_method", arguments["code_challenge_method"] as String)
+            putExtra("scope", arguments["scope"] as? String ?: "openid profile")
+            arguments["state"]?.let { putExtra("state", it as String) }
+        }
+        return try {
+            startActivityForResult(intent, REQUEST_MDM_OAUTH)
+            true
+        } catch (error: android.content.ActivityNotFoundException) {
+            false
         }
     }
 
@@ -131,6 +163,8 @@ class MainActivity : FlutterActivity() {
                 override fun onCreateFile() = createFile()
                 override fun onGetDirectory() = getDirectory()
                 override fun onSetSecureFlag(secure: Boolean) = setSecureFlag(secure)
+                override fun onMdmAuthorize(arguments: Map<*, *>): Boolean =
+                    startMdmAuthorize(arguments)
             }
         }
     }

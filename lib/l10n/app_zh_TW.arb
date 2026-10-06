@@ -1,228 +1,270 @@
 {
-    "@@locale": "zh_TW",
-    "addDictionary": "請先在設定中新增 MDX 詞典",
-    "startToSearch": "開始搜尋吧 :)",
-    "manageDictionaries": "管理詞典",
-    "home": "主頁",
-    "wordBook": "詞彙本",
-    "settings": "設定",
-    "permissionDenied": "你必須授予權限",
-    "close": "關閉",
-    "search": "搜尋",
-    "theme": "主題",
-    "dynamicColor": "Material 動態配色",
-    "dynamicColorDescription": "使用系統動態配色方案",
-    "pureBlackDarkMode": "純黑深色模式 (AMOLED)",
-    "pureBlackDarkModeDescription": "在深色主題中使用純黑背景",
-    "appThemeColor": "應用主題配色",
-    "chooseThemeColor": "選擇主題色",
-    "customColor": "自訂",
-    "customThemeColor": "自訂主題色",
-    "light": "淺色",
-    "dark": "深色",
-    "system": "系統",
-    "language": "語言",
-    "lookup": "查詢",
-    "notFound": "沒有找到",
-    "notSupport": "不支援該 MDX 檔案",
-    "copy": "複製",
-    "readLoudly": "朗讀",
-    "recommendedDictionaries": "推薦詞典",
-    "feedback": "回饋",
-    "copied": "已複製",
-    "export": "匯出",
-    "import": "匯入",
-    "customFont": "自訂字型",
-    "empty": "空空如也...",
-    "add": "新增",
-    "autoExport": "自動匯出",
-    "tags": "標籤",
-    "addTag": "新增標籤",
-    "tagName": "標籤名稱",
-    "tagList": "標籤列表",
-    "remove": "刪除",
-    "confirm": "確認",
-    "noResult": "無結果",
-    "updateAnnouncement": "更新至 {version} 的公告",
-    "@updateAnnouncement": {
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "description": "簡介",
-    "removeOneHistoryConfirm": "你確認要從歷史記錄中刪除「{word}」嗎？",
-    "@removeOneHistoryConfirm": {
-        "placeholders": {
-            "word": {
-                "type": "String"
-            }
-        }
-    },
-    "removeOneHistory": "刪除歷史記錄",
-    "clearHistory": "清空歷史記錄",
-    "clearHistoryConfirm": "你確認要清空歷史記錄嗎？",
-    "default_": "預設",
-    "manageGroups": "管理分組",
-    "exportFileName": "匯出檔案名稱",
-    "exportDirectory": "匯出目錄",
-    "properties": "屬性",
-    "title": "標題",
-    "totalNumberOfEntries": "總條目數",
-    "sponsor": "贊助",
-    "more": "更多",
-    "autoRemoveSearchWord": "自動移除搜尋字詞",
-    "secureScreen": "防止螢幕截圖",
-    "searchBarLocation": "搜尋列位置",
-    "top": "頂部",
-    "bottom": "底部",
-    "sidebarIcon": "側邊欄圖示",
-    "exportPath": "匯出路徑",
-    "editWord": "編輯字詞",
-    "notification": "通知",
-    "moreOptionsButton": "更多選項按鈕",
-    "titleAlias": "標題別名",
-    "skipTaggedWord": "略過有標籤的字詞",
-    "dictionaryGroups": "詞典分組",
-    "history": "歷史記錄",
-    "appearance": "外觀",
-    "privacy": "隱私",
-    "privacyPolicy": "隱私權政策",
-    "aiSettings": "AI 設定",
-    "aiProvider": "AI 提供者",
-    "aiModel": "AI 模型",
-    "apiKey": "API 金鑰",
-    "aiExplainWord": "AI 解釋字詞",
-    "outputType": "輸出類型",
-    "richOutput": "豐富輸出",
-    "simpleOutput": "簡單輸出",
-    "enterTextToTranslate": "輸入要翻譯的文字",
-    "translate": "翻譯",
-    "sourceLanguage": "來源語言",
-    "targetLanguage": "目標語言",
-    "termsOfService": "服務條款",
-    "autoDetect": "自動偵測",
-    "checkForUpdates": "檢查更新",
-    "updateAvailable": "有可用更新",
-    "updateAvailableContent": "有新版本 {version} 可供更新",
-    "@updateAvailableContent": {
-        "placeholders": {
-            "version": {
-                "type": "String"
-            }
-        }
-    },
-    "update": "更新",
-    "noUpdateAvailable": "目前是最新版本",
-    "updateCheckFailed": "檢查更新失敗",
-    "includePrerelease": "包含預發行版本",
-    "checkingForUpdates": "正在檢查更新",
-    "aiExplainWordPrompt": "解釋字詞提示詞",
-    "promptMode": "提示詞模式",
-    "customOption": "自訂",
-    "customExplainPrompt": "自訂解釋提示詞",
-    "customExplainPromptHelper": "你可以在提示詞中使用 $word 和 $targetLanguage。",
-    "aiTranslatePrompt": "AI 翻譯提示詞",
-    "customTranslatePrompt": "自訂翻譯提示詞",
-    "customTranslatePromptHelper": "你可以在提示詞中使用 $sourceLanguage、$targetLanguage 和 $text。",
-    "tabBarPosition": "單詞顯示中的標籤列位置",
-    "showSearchBarInWordDisplayPage": "在字詞顯示中顯示搜尋列",
-    "autoUpdate": "自動更新",
-    "legacyImport": "舊版匯入 (未來將移除)",
-    "audioSettings": "音訊設定",
-    "ttsEngines": "TTS 引擎",
-    "ttsLanguages": "TTS 語言",
-    "apiUrl": "API URL",
-    "floatingWindow": "浮動視窗",
-    "loading": "載入中...",
-    "addingWord": "正在新增字詞: {word}",
-    "@addingWord": {
-        "placeholders": {
-            "word": {
-                "type": "String"
-            }
-        }
-    },
-    "copyingFiles": "正在複製檔案...",
-    "addingResource": "正在新增資源: {resource}",
-    "@addingResource": {
-        "placeholders": {
-            "resource": {
-                "type": "String"
-            }
-        }
-    },
-    "other": "其他",
-    "about": "關於",
-    "backup": "備份",
-    "advance": "進階",
-    "advanceSwitchDescription": "啟用以顯示更多設定選項",
-    "enableHistory": "啟用歷史記錄",
-    "changelog": "更新日誌",
-    "save": "儲存",
-    "dictionarySwitchStyle": "詞典切換樣式",
-    "expansion": "展開式",
-    "tab": "標籤式",
-    "manageStorage": "管理儲存空間",
-    "confirmDelete": "確認刪除",
-    "confirmDeleteMessage": "你確定要刪除「{name}」嗎？",
-    "@confirmDeleteMessage": {
-        "placeholders": {
-            "name": {
-                "type": "String"
-            }
-        }
-    },
-    "delete": "刪除",
-    "cancel": "取消",
-    "back": "返回",
-    "dictionaryFileNotFound": "詞典檔案未找到。正在從資料庫中刪除。",
-    "confirmDeleteWords": "您確定要刪除所選的 {count} 個單字嗎？",
-    "@confirmDeleteWords": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "writingCheck": "寫作檢查",
-    "label_enter_to_check": "輸入要檢查的文本",
-    "check": "檢查",
-    "resetToDefault": "重設為預設",
-    "writingCheckPromptTitle": "寫作檢查提示詞",
-    "writingCheckPromptHelper": "你可以在提示詞中使用 $text 和 $targetLanguage。",
-    "editAIExplanation": "編輯 AI 解釋",
-    "enterAIExplanation": "輸入 AI 解釋",
-    "logs": "日誌",
-    "translationProvider": "翻譯提供者",
-    "searchLanguage": "搜尋語言",
-    "writingCheckHistory": "寫作檢查歷史",
-    "nSelected": "{count} 已選取",
-    "@nSelected": {
-        "placeholders": {
-            "count": {
-                "type": "int"
-            }
-        }
-    },
-    "translationHistory": "翻譯歷史記錄",
-    "enableTranslationHistory": "啟用翻譯歷史記錄",
-    "enableWritingCheckHistory": "啟用寫作檢查歷史記錄",
-    "alternatives": "替代方案",
-    "openLink": "開啟連結",
-    "copyLink": "複製連結",
-    "sponsorSupportTip": "你的支持將幫助項目持續開發 ❤",
-    "sponsorCodes": "贊助碼",
-    "wechat": "微信",
-    "pressAgainToExit": "再按一次退出",
-    "autoFocusSearch": "自動對焦搜尋欄",
-    "wordbookStats": "單字本統計",
-    "month": "月",
-    "totalWordsInWordbook": "單字本中的總單字數",
-    "launchAtStartup": "啟動時啟動",
-    "openRecordStats": "開啟記錄統計",
-    "showWindow": "顯示視窗",
-    "noDictionariesFound": "找不到詞典",
-    "exitApp": "退出應用程式"
+  "@@locale": "zh_TW",
+  "addDictionary": "請先在設定中新增 MDX 詞典",
+  "startToSearch": "開始搜尋吧 :)",
+  "manageDictionaries": "管理詞典",
+  "home": "主頁",
+  "wordBook": "詞彙本",
+  "settings": "設定",
+  "permissionDenied": "你必須授予權限",
+  "close": "關閉",
+  "search": "搜尋",
+  "theme": "主題",
+  "dynamicColor": "Material 動態配色",
+  "dynamicColorDescription": "使用系統動態配色方案",
+  "pureBlackDarkMode": "純黑深色模式 (AMOLED)",
+  "pureBlackDarkModeDescription": "在深色主題中使用純黑背景",
+  "appThemeColor": "應用主題配色",
+  "chooseThemeColor": "選擇主題色",
+  "customColor": "自訂",
+  "customThemeColor": "自訂主題色",
+  "light": "淺色",
+  "dark": "深色",
+  "system": "系統",
+  "language": "語言",
+  "lookup": "查詢",
+  "notFound": "沒有找到",
+  "notSupport": "不支援該 MDX 檔案",
+  "copy": "複製",
+  "readLoudly": "朗讀",
+  "recommendedDictionaries": "推薦詞典",
+  "feedback": "回饋",
+  "copied": "已複製",
+  "export": "匯出",
+  "import": "匯入",
+  "customFont": "自訂字型",
+  "empty": "空空如也...",
+  "add": "新增",
+  "autoExport": "自動匯出",
+  "tags": "標籤",
+  "addTag": "新增標籤",
+  "tagName": "標籤名稱",
+  "tagList": "標籤列表",
+  "remove": "刪除",
+  "confirm": "確認",
+  "noResult": "無結果",
+  "updateAnnouncement": "更新至 {version} 的公告",
+  "@updateAnnouncement": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "description": "簡介",
+  "removeOneHistoryConfirm": "你確認要從歷史記錄中刪除「{word}」嗎？",
+  "@removeOneHistoryConfirm": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "removeOneHistory": "刪除歷史記錄",
+  "clearHistory": "清空歷史記錄",
+  "clearHistoryConfirm": "你確認要清空歷史記錄嗎？",
+  "default_": "預設",
+  "manageGroups": "管理分組",
+  "exportFileName": "匯出檔案名稱",
+  "exportDirectory": "匯出目錄",
+  "properties": "屬性",
+  "title": "標題",
+  "totalNumberOfEntries": "總條目數",
+  "sponsor": "贊助",
+  "more": "更多",
+  "autoRemoveSearchWord": "自動移除搜尋字詞",
+  "secureScreen": "防止螢幕截圖",
+  "searchBarLocation": "搜尋列位置",
+  "top": "頂部",
+  "bottom": "底部",
+  "sidebarIcon": "側邊欄圖示",
+  "exportPath": "匯出路徑",
+  "editWord": "編輯字詞",
+  "notification": "通知",
+  "moreOptionsButton": "更多選項按鈕",
+  "titleAlias": "標題別名",
+  "skipTaggedWord": "略過有標籤的字詞",
+  "dictionaryGroups": "詞典分組",
+  "history": "歷史記錄",
+  "appearance": "外觀",
+  "privacy": "隱私",
+  "privacyPolicy": "隱私權政策",
+  "aiSettings": "AI 設定",
+  "aiProvider": "AI 提供者",
+  "aiModel": "AI 模型",
+  "apiKey": "API 金鑰",
+  "aiExplainWord": "AI 解釋字詞",
+  "outputType": "輸出類型",
+  "richOutput": "豐富輸出",
+  "simpleOutput": "簡單輸出",
+  "enterTextToTranslate": "輸入要翻譯的文字",
+  "translate": "翻譯",
+  "sourceLanguage": "來源語言",
+  "targetLanguage": "目標語言",
+  "termsOfService": "服務條款",
+  "autoDetect": "自動偵測",
+  "checkForUpdates": "檢查更新",
+  "updateAvailable": "有可用更新",
+  "updateAvailableContent": "有新版本 {version} 可供更新",
+  "@updateAvailableContent": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "update": "更新",
+  "noUpdateAvailable": "目前是最新版本",
+  "updateCheckFailed": "檢查更新失敗",
+  "includePrerelease": "包含預發行版本",
+  "checkingForUpdates": "正在檢查更新",
+  "aiExplainWordPrompt": "解釋字詞提示詞",
+  "promptMode": "提示詞模式",
+  "customOption": "自訂",
+  "customExplainPrompt": "自訂解釋提示詞",
+  "customExplainPromptHelper": "你可以在提示詞中使用 $word 和 $targetLanguage。",
+  "aiTranslatePrompt": "AI 翻譯提示詞",
+  "customTranslatePrompt": "自訂翻譯提示詞",
+  "customTranslatePromptHelper": "你可以在提示詞中使用 $sourceLanguage、$targetLanguage 和 $text。",
+  "tabBarPosition": "單詞顯示中的標籤列位置",
+  "showSearchBarInWordDisplayPage": "在字詞顯示中顯示搜尋列",
+  "autoUpdate": "自動更新",
+  "legacyImport": "舊版匯入 (未來將移除)",
+  "audioSettings": "音訊設定",
+  "ttsEngines": "TTS 引擎",
+  "ttsLanguages": "TTS 語言",
+  "apiUrl": "API URL",
+  "floatingWindow": "浮動視窗",
+  "loading": "載入中...",
+  "addingWord": "正在新增字詞: {word}",
+  "@addingWord": {
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "copyingFiles": "正在複製檔案...",
+  "addingResource": "正在新增資源: {resource}",
+  "@addingResource": {
+    "placeholders": {
+      "resource": {
+        "type": "String"
+      }
+    }
+  },
+  "other": "其他",
+  "about": "關於",
+  "backup": "備份",
+  "advance": "進階",
+  "advanceSwitchDescription": "啟用以顯示更多設定選項",
+  "enableHistory": "啟用歷史記錄",
+  "changelog": "更新日誌",
+  "save": "儲存",
+  "dictionarySwitchStyle": "詞典切換樣式",
+  "expansion": "展開式",
+  "tab": "標籤式",
+  "manageStorage": "管理儲存空間",
+  "confirmDelete": "確認刪除",
+  "confirmDeleteMessage": "你確定要刪除「{name}」嗎？",
+  "@confirmDeleteMessage": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "delete": "刪除",
+  "cancel": "取消",
+  "back": "返回",
+  "dictionaryFileNotFound": "詞典檔案未找到。正在從資料庫中刪除。",
+  "confirmDeleteWords": "您確定要刪除所選的 {count} 個單字嗎？",
+  "@confirmDeleteWords": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "writingCheck": "寫作檢查",
+  "label_enter_to_check": "輸入要檢查的文本",
+  "check": "檢查",
+  "resetToDefault": "重設為預設",
+  "writingCheckPromptTitle": "寫作檢查提示詞",
+  "writingCheckPromptHelper": "你可以在提示詞中使用 $text 和 $targetLanguage。",
+  "editAIExplanation": "編輯 AI 解釋",
+  "enterAIExplanation": "輸入 AI 解釋",
+  "logs": "日誌",
+  "translationProvider": "翻譯提供者",
+  "searchLanguage": "搜尋語言",
+  "writingCheckHistory": "寫作檢查歷史",
+  "nSelected": "{count} 已選取",
+  "@nSelected": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "translationHistory": "翻譯歷史記錄",
+  "enableTranslationHistory": "啟用翻譯歷史記錄",
+  "enableWritingCheckHistory": "啟用寫作檢查歷史記錄",
+  "alternatives": "替代方案",
+  "openLink": "開啟連結",
+  "copyLink": "複製連結",
+  "sponsorSupportTip": "你的支持將幫助項目持續開發 ❤",
+  "sponsorCodes": "贊助碼",
+  "wechat": "微信",
+  "pressAgainToExit": "再按一次退出",
+  "autoFocusSearch": "自動對焦搜尋欄",
+  "wordbookStats": "單字本統計",
+  "month": "月",
+  "totalWordsInWordbook": "單字本中的總單字數",
+  "launchAtStartup": "啟動時啟動",
+  "openRecordStats": "開啟記錄統計",
+  "showWindow": "顯示視窗",
+  "noDictionariesFound": "找不到詞典",
+  "exitApp": "退出應用程式",
+  "dictLibrary": "詞典庫",
+  "@dictLibrary": {},
+  "dictLibraryLoadFailed": "詞典庫載入失敗",
+  "@dictLibraryLoadFailed": {},
+  "dictInstallFailed": "詞典安裝失敗",
+  "@dictInstallFailed": {},
+  "installedSuccessfully": "安裝成功",
+  "@installedSuccessfully": {},
+  "installed": "已安裝",
+  "@installed": {},
+  "download": "下載",
+  "@download": {},
+  "retry": "重試",
+  "@retry": {},
+  "schoolSync": "學校同步",
+  "@schoolSync": {},
+  "schoolSyncNotManaged": "本裝置未接入學校管理，或目前沒有學生登入。請先在學校裝置管理應用中登入。",
+  "@schoolSyncNotManaged": {},
+  "schoolSyncAndroidOnly": "學校同步僅在校管安卓裝置上可用。",
+  "@schoolSyncAndroidOnly": {},
+  "loggedInAs": "已登入：{username}",
+  "@loggedInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "立即同步",
+  "@syncNow": {},
+  "syncOnStartup": "啟動時同步",
+  "@syncOnStartup": {},
+  "syncCompleted": "同步完成",
+  "@syncCompleted": {},
+  "lastSync": "上次同步",
+  "@lastSync": {},
+  "neverSynced": "從未同步",
+  "@neverSynced": {},
+  "logout": "登出",
+  "@logout": {},
+  "authorizeAndSync": "授權並同步",
+  "@authorizeAndSync": {}
 }

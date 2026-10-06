@@ -1,5 +1,4 @@
 import "package:ciyue/repositories/dictionary.dart";
-import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/viewModels/dictionary.dart";
 import "package:ciyue/viewModels/home.dart";
 import "package:material_ui/material_ui.dart";
@@ -16,7 +15,7 @@ class HomeScreen extends StatelessWidget {
     context.select<HomeModel, int>((value) => value.state);
     context.select<DictManagerModel, bool>((value) => value.isEmpty);
 
-    final content = dictManager.isEmpty && !settings.aiExplainWord
+    final content = dictManager.isEmpty
         ? const RecommendedDictionaries()
         : const HomeBody();
 

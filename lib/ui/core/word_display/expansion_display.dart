@@ -5,7 +5,6 @@ import "package:ciyue/core/providers.dart";
 import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/floating_window.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
-import "package:ciyue/ui/core/word_display/ai_widgets.dart";
 import "package:ciyue/ui/core/word_display/audio_waveform.dart";
 import "package:ciyue/ui/core/word_display/buttons.dart";
 import "package:ciyue/ui/core/word_display/pager_context.dart";
@@ -69,10 +68,7 @@ class _ExpansionWordDisplayState extends ConsumerState<ExpansionWordDisplay> {
     // We can't use ref here easily for initialization if it depends on ref.watch,
     // but since settings is a singleton for now, it's okay.
     // Long term we should probably pass settings in or use ref in build.
-    final length = settings.aiExplainWord
-        ? widget.validDictIds.length + 1
-        : widget.validDictIds.length;
-    _isExpanded = List<bool>.generate(length, (_) => true);
+    _isExpanded = List<bool>.generate(widget.validDictIds.length, (_) => true);
   }
 
   @override
@@ -82,20 +78,6 @@ class _ExpansionWordDisplayState extends ConsumerState<ExpansionWordDisplay> {
 
     final panels = <ExpansionPanel>[];
     int panelIndex = 0;
-
-    if (settings.aiExplainWord) {
-      panels.add(
-        ExpansionPanel(
-          headerBuilder: (context, isExpanded) {
-            return const ListTile(title: Text("AI"));
-          },
-          body: AIExplainView(word: widget.word),
-          isExpanded: _isExpanded[panelIndex],
-          canTapOnHeader: true,
-        ),
-      );
-      panelIndex++;
-    }
 
     for (final dictId in widget.validDictIds) {
       panels.add(
@@ -110,9 +92,6 @@ class _ExpansionWordDisplayState extends ConsumerState<ExpansionWordDisplay> {
       );
       panelIndex++;
     }
-
-    final isAIExplainTabSelected =
-        settings.aiExplainWord && _isExpanded.isNotEmpty && _isExpanded[0];
 
     final searchBar = _buildSearchBar(settings);
 
@@ -175,10 +154,7 @@ class _ExpansionWordDisplayState extends ConsumerState<ExpansionWordDisplay> {
       bottomNavigationBar: (!settings.searchBarInAppBar && searchBar != null)
           ? BottomAppBar(child: searchBar)
           : null,
-      floatingActionButton: Button(
-        word: widget.word,
-        showAIButtons: isAIExplainTabSelected,
-      ),
+      floatingActionButton: Button(word: widget.word),
       body: Stack(
         children: [
           SingleChildScrollView(

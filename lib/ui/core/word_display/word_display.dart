@@ -6,18 +6,15 @@ import "package:ciyue/repositories/dictionary.dart";
 import "package:ciyue/repositories/settings.dart";
 import "package:ciyue/services/floating_window.dart";
 import "package:ciyue/src/generated/i18n/app_localizations.dart";
-import "package:ciyue/ui/core/word_display/ai_widgets.dart";
 import "package:ciyue/ui/core/word_display/audio_waveform.dart";
 import "package:ciyue/ui/core/word_display/buttons.dart";
 import "package:ciyue/ui/core/word_display/expansion_display.dart";
 import "package:ciyue/ui/core/word_display/pager_context.dart";
 import "package:ciyue/ui/core/word_display/utils.dart";
 import "package:ciyue/utils.dart" as app_utils;
-import "package:ciyue/viewModels/ai_explanation.dart";
 import "package:material_ui/material_ui.dart";
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import "package:go_router/go_router.dart";
-import "package:provider/provider.dart" as legacy_provider;
 
 class WordDisplay extends ConsumerStatefulWidget {
   final String word;
@@ -67,7 +64,7 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
       context,
       validDictIdsAsync.when(
         data: (validDictIds) {
-          if (validDictIds.isEmpty && !settings.aiExplainWord) {
+          if (validDictIds.isEmpty) {
             final searchBar = _buildSearchBar(settings);
             return Scaffold(
               appBar: buildAppBar(context, false, title: searchBar),
@@ -98,38 +95,27 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
             );
           }
 
-          final dictsLength = settings.aiExplainWord
-              ? validDictIds.length + 1
-              : validDictIds.length;
-          final showTab = dictsLength > 1;
+          final showTab = validDictIds.length > 1;
 
           if (!showTab) {
             final searchBar = _buildSearchBar(settings);
-            return legacy_provider.ChangeNotifierProvider(
-              create: (_) => AIExplanationModel(),
-              child: Scaffold(
-                appBar: buildAppBar(context, showTab, title: searchBar),
-                bottomNavigationBar:
-                    (!settings.searchBarInAppBar && searchBar != null)
-                    ? BottomAppBar(child: searchBar)
-                    : null,
-                floatingActionButton: Button(
-                  word: widget.word,
-                  showAIButtons: settings.aiExplainWord,
-                ),
-                body: Stack(
-                  children: [
-                    settings.aiExplainWord
-                        ? AIExplainView(word: widget.word)
-                        : _buildWebView(validDictIds[0]),
-                    const Positioned(
-                      left: 16,
-                      right: 16,
-                      bottom: 16,
-                      child: FloatingAudioIndicator(),
-                    ),
-                  ],
-                ),
+            return Scaffold(
+              appBar: buildAppBar(context, showTab, title: searchBar),
+              bottomNavigationBar:
+                  (!settings.searchBarInAppBar && searchBar != null)
+                  ? BottomAppBar(child: searchBar)
+                  : null,
+              floatingActionButton: Button(word: widget.word),
+              body: Stack(
+                children: [
+                  _buildWebView(validDictIds[0]),
+                  const Positioned(
+                    left: 16,
+                    right: 16,
+                    bottom: 16,
+                    child: FloatingAudioIndicator(),
+                  ),
+                ],
               ),
             );
           }
@@ -139,83 +125,63 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
             if (widget.initialDictId != null) {
               final targetIndex = validDictIds.indexOf(widget.initialDictId!);
               if (targetIndex != -1) {
-                initialTabIndex = settings.aiExplainWord
-                    ? targetIndex + 1
-                    : targetIndex;
+                initialTabIndex = targetIndex;
               }
             }
 
-            return legacy_provider.ChangeNotifierProvider(
-              create: (_) => AIExplanationModel(),
-              child: DefaultTabController(
-                initialIndex: initialTabIndex,
-                length: dictsLength,
-                child: Builder(
-                  builder: (context) {
-                    final tabController = DefaultTabController.of(context);
-                    final searchBar = _buildSearchBar(settings);
+            return DefaultTabController(
+              initialIndex: initialTabIndex,
+              length: validDictIds.length,
+              child: Builder(
+                builder: (context) {
+                  final searchBar = _buildSearchBar(settings);
 
-                    return Scaffold(
-                      appBar: buildAppBar(context, showTab, title: searchBar),
-                      floatingActionButton: ListenableBuilder(
-                        listenable: tabController,
-                        builder: (context, child) {
-                          final isAIExplainTabSelected =
-                              settings.aiExplainWord &&
-                              tabController.index == 0;
-                          return Button(
-                            word: widget.word,
-                            showAIButtons: isAIExplainTabSelected,
-                          );
-                        },
-                      ),
-                      body: Stack(
-                        children: [
-                          Column(
-                            children: [
-                              Expanded(
-                                child: buildTabView(
-                                  context,
-                                  validDictIds: validDictIds,
-                                ),
+                  return Scaffold(
+                    appBar: buildAppBar(context, showTab, title: searchBar),
+                    floatingActionButton: Button(word: widget.word),
+                    body: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            Expanded(
+                              child: buildTabView(
+                                context,
+                                validDictIds: validDictIds,
                               ),
-                              if (settings.tabBarPosition ==
+                            ),
+                            if (settings.tabBarPosition ==
+                                    TabBarPosition.bottom &&
+                                showTab)
+                              buildTabBar(context),
+                            if (!settings.searchBarInAppBar &&
+                                searchBar != null)
+                              searchBar,
+                          ],
+                        ),
+                        Positioned(
+                          left: 16,
+                          right: 16,
+                          bottom:
+                              (settings.tabBarPosition ==
                                       TabBarPosition.bottom &&
                                   showTab)
-                                buildTabBar(context),
-                              if (!settings.searchBarInAppBar &&
-                                  searchBar != null)
-                                searchBar,
-                            ],
-                          ),
-                          Positioned(
-                            left: 16,
-                            right: 16,
-                            bottom:
-                                (settings.tabBarPosition ==
-                                        TabBarPosition.bottom &&
-                                    showTab)
-                                ? 64
-                                : 16,
-                            child: const FloatingAudioIndicator(),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
-                ),
+                              ? 64
+                              : 16,
+                          child: const FloatingAudioIndicator(),
+                        ),
+                      ],
+                    ),
+                  );
+                },
               ),
             );
           }
 
-          return legacy_provider.ChangeNotifierProvider(
-            create: (_) => AIExplanationModel(),
-            child: ExpansionWordDisplay(
-              word: widget.word,
-              validDictIds: validDictIds,
-              searchController: _searchController,
-              pagerInfo: widget.pagerInfo,
-            ),
+          return ExpansionWordDisplay(
+            word: widget.word,
+            validDictIds: validDictIds,
+            searchController: _searchController,
+            pagerInfo: widget.pagerInfo,
           );
         },
         loading: () {
@@ -316,7 +282,6 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
 
   PreferredSizeWidget buildTabBar(BuildContext context) {
     final dictManager = ref.watch(dictManagerProvider);
-    final settings = ref.watch(settingsProvider);
     final validDictIdsAsync = ref.watch(validDictIdsProvider(widget.word));
 
     return PreferredSize(
@@ -326,7 +291,6 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
           isScrollable: true,
           tabAlignment: TabAlignment.start,
           tabs: [
-            if (settings.aiExplainWord) Tab(text: "AI"),
             for (final id in validDictIds)
               if (dictManager.dicts[id] case final dict?) Tab(text: dict.title),
           ],
@@ -341,13 +305,7 @@ class _WordDisplayState extends ConsumerState<WordDisplay> {
     BuildContext context, {
     List<int> validDictIds = const [],
   }) {
-    final settings = ref.watch(settingsProvider);
     final children = <Widget>[
-      if (settings.aiExplainWord)
-        KeepAliveWidget(
-          key: const ValueKey("ai_tab"),
-          child: AIExplainView(word: widget.word),
-        ),
       for (final id in validDictIds)
         KeepAliveWidget(key: ValueKey("dict_$id"), child: _buildWebView(id)),
     ];

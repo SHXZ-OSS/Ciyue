@@ -27,9 +27,6 @@ AppDatabase appDatabase() {
     DictGroup,
     MddAudioList,
     MddAudioResource,
-    AiExplanations,
-    WritingCheckHistory,
-    TranslateHistory,
     OpenRecords,
     Flashcards,
     FlashcardReviewLogs,
@@ -43,9 +40,6 @@ AppDatabase appDatabase() {
     DictGroupDao,
     MddAudioListDao,
     MddAudioResourceDao,
-    AiExplanationDao,
-    WritingCheckHistoryDao,
-    TranslateHistoryDao,
     OpenRecordsDao,
     FlashcardDao,
   ],
@@ -139,10 +133,17 @@ class AppDatabase extends _$AppDatabase {
             schema.hunspellSource.twoPassLookup,
           );
         },
+        from19To20: (m, schema) async {
+          // Online features (AI explanations, writing check, translation)
+          // were removed from the managed school build.
+          await m.deleteTable("ai_explanations");
+          await m.deleteTable("writing_check_history");
+          await m.deleteTable("translate_history");
+        },
       ),
     );
   }
 
   @override
-  int get schemaVersion => 19;
+  int get schemaVersion => 20;
 }

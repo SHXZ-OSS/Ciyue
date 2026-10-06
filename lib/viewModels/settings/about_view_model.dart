@@ -1,25 +1,15 @@
 import "package:ciyue/core/app_globals.dart";
 import "package:ciyue/services/changelog.dart";
 import "package:ciyue/ui/core/changelog_dialog.dart";
-import "package:ciyue/ui/pages/settings/about/sponsor_sheet.dart";
 import "package:ciyue/utils.dart";
 import "package:material_ui/material_ui.dart";
 import "package:go_router/go_router.dart";
 import "package:intl/intl.dart";
-import "package:url_launcher/url_launcher.dart";
 
 class AboutViewModel extends ChangeNotifier {
   // URIs and other constants
-  static const feedbackUri = "https://github.com/mumu-lhl/Ciyue/issues";
   static const githubUri = "https://github.com/mumu-lhl/Ciyue";
-  static const discordUri = "https://discord.gg/BazBZuvKZG";
-  static const sponsorUri = "https://afdian.com/a/mumulhl";
-  static const unifansSponsorUri = "https://app.unifans.io/c/mumulhl";
-  static const qqGroupNumber = "1057888678";
-
-  void launchUri(String uri) {
-    launchUrl(Uri.parse(uri));
-  }
+  static const forkUri = "https://github.com/SHXZ-OSS/Ciyue";
 
   void copyToClipboard(BuildContext context, String text) {
     addToClipboard(context, text);
@@ -44,10 +34,6 @@ class AboutViewModel extends ChangeNotifier {
       context: context,
       builder: (context) => ChangelogDialog(changelogContent: changelogContent),
     );
-  }
-
-  void showSponsorSheet(BuildContext context) {
-    showAppSponsorSheet(context);
   }
 
   String get applicationVersion {

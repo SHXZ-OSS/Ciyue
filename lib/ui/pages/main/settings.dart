@@ -20,19 +20,6 @@ class AboutPageListTile extends StatelessWidget {
   }
 }
 
-class AiSettingsPageListTile extends StatelessWidget {
-  const AiSettingsPageListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.settings),
-      title: Text(AppLocalizations.of(context)!.aiSettings),
-      onTap: () => context.push("/settings/ai_settings"),
-    );
-  }
-}
-
 class AppearanceSettingsPageListTile extends StatelessWidget {
   const AppearanceSettingsPageListTile({super.key});
 
@@ -54,28 +41,15 @@ class AudioSettingsPageListTile extends StatefulWidget {
       _AudioSettingsPageListTileState();
 }
 
-class CloudSyncPageListTile extends StatelessWidget {
-  const CloudSyncPageListTile({super.key});
+class SchoolSyncPageListTile extends StatelessWidget {
+  const SchoolSyncPageListTile({super.key});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: const Icon(Icons.cloud_sync),
-      title: Text(AppLocalizations.of(context)!.cloudSync),
-      onTap: () => context.push("/settings/cloud_sync"),
-    );
-  }
-}
-
-class BackupPageListTile extends StatelessWidget {
-  const BackupPageListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.import_export),
-      title: Text(AppLocalizations.of(context)!.backup),
-      onTap: () => context.push("/settings/backup"),
+      leading: const Icon(Icons.school),
+      title: Text(AppLocalizations.of(context)!.schoolSync),
+      onTap: () => context.push("/settings/sync"),
     );
   }
 }
@@ -187,7 +161,6 @@ class SettingsScreen extends StatelessWidget {
       children: [
         const _WordbookStats(),
         const ManageDictionariesPageListTile(),
-        const AiSettingsPageListTile(),
         const AudioSettingsPageListTile(),
         if (Platform.isAndroid && !isFullFlavor())
           const ManageStorageListTile(),
@@ -199,9 +172,7 @@ class SettingsScreen extends StatelessWidget {
           onTap: () => context.push("/settings/flashcards"),
         ),
         const HunspellPageListTile(),
-        const BackupPageListTile(),
-        const CloudSyncPageListTile(),
-        const UpdatePageListTile(),
+        const SchoolSyncPageListTile(),
         const OtherPageListTile(),
         const LoggerPageListTile(),
         const AboutPageListTile(),
@@ -232,19 +203,6 @@ class ManageStorageListTile extends StatelessWidget {
       leading: const Icon(Icons.sd_storage),
       title: Text(AppLocalizations.of(context)!.manageStorage),
       onTap: () => context.push("/settings/storage_management"),
-    );
-  }
-}
-
-class UpdatePageListTile extends StatelessWidget {
-  const UpdatePageListTile({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: const Icon(Icons.update),
-      title: Text(AppLocalizations.of(context)!.update),
-      onTap: () => context.push("/settings/update"),
     );
   }
 }

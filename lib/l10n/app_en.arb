@@ -56,14 +56,8 @@
   "@copy": {},
   "readLoudly": "Read Aloud",
   "@readLoudly": {},
-  "recommendedDictionaries": "Recommmended Dictionaries",
-  "@recommendedDictionaries": {},
-  "feedback": "Feedback",
-  "@feedback": {},
   "copied": "Copied",
   "@copied": {},
-  "export": "Export",
-  "@export": {},
   "import": "Import",
   "@import": {},
   "customFont": "Custom Font",
@@ -92,8 +86,6 @@
   "@empty": {},
   "add": "Add",
   "@add": {},
-  "autoExport": "Auto Export",
-  "@autoExport": {},
   "tags": "Tags",
   "@tags": {},
   "addTag": "Add Tag",
@@ -106,30 +98,10 @@
   "@remove": {},
   "confirm": "Confirm",
   "@confirm": {},
-  "noResult": "No Result",
-  "@noResult": {},
-  "updateAnnouncement": "The Announcement of Updating to {version}",
-  "@updateAnnouncement": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "description": "Description",
   "@description": {},
   "properties": "Properties",
   "@properties": {},
-  "removeOneHistory": "Remove History",
-  "@removeOneHistory": {},
-  "removeOneHistoryConfirm": "Are you sure you want to remove '{word}' from history?",
-  "@removeOneHistoryConfirm": {
-    "placeholders": {
-      "word": {
-        "type": "String"
-      }
-    }
-  },
   "clearHistory": "Clear History",
   "@clearHistory": {},
   "clearHistoryConfirm": "Are you sure you want to clear history?",
@@ -138,16 +110,10 @@
   "@default_": {},
   "manageGroups": "Manage Groups",
   "@manageGroups": {},
-  "exportFileName": "Export File Name",
-  "@exportFileName": {},
-  "exportDirectory": "Export Directory",
-  "@exportDirectory": {},
   "title": "Title",
   "@title": {},
   "totalNumberOfEntries": "Total Number of Entries",
   "@totalNumberOfEntries": {},
-  "sponsor": "Sponsor",
-  "@sponsor": {},
   "more": "More",
   "@more": {},
   "autoRemoveSearchWord": "Auto Remove Search Word",
@@ -162,10 +128,6 @@
   "@bottom": {},
   "sidebarIcon": "Sidebar Icon",
   "@sidebarIcon": {},
-  "exportPath": "Export Path",
-  "@exportPath": {},
-  "editWord": "Edit Word",
-  "@editWord": {},
   "notification": "Notification",
   "@notification": {},
   "moreOptionsButton": "More Options Button",
@@ -176,296 +138,34 @@
   "@skipTaggedWord": {},
   "dictionaryGroups": "Dictionary Groups",
   "@dictionaryGroups": {},
-  "currentDictionaryGroup": "Dictionary group: {group}",
-  "@currentDictionaryGroup": {
-    "placeholders": {
-      "group": {
-        "type": "String"
-      }
-    }
-  },
-  "switchingToDictionaryGroup": "Switching to {group}…",
-  "@switchingToDictionaryGroup": {
-    "placeholders": {
-      "group": {
-        "type": "String"
-      }
-    }
-  },
   "history": "History",
   "@history": {},
   "appearance": "Appearance",
   "@appearance": {},
-  "privacy": "Privacy",
-  "@privacy": {},
   "privacyPolicy": "Privacy Policy",
   "@privacyPolicy": {},
-  "aiSettings": "AI Settings",
-  "@aiSettings": {},
-  "aiProvider": "AI Provider",
-  "@aiProvider": {},
-  "aiModel": "AI Model",
-  "@aiModel": {},
-  "fetchModels": "Fetch Models via API",
-  "@fetchModels": {},
-  "fetchModelsSuccess": "Successfully fetched models",
-  "@fetchModelsSuccess": {},
-  "fetchModelsFailed": "Failed to fetch models",
-  "@fetchModelsFailed": {},
-  "selectModel": "Select Model",
-  "@selectModel": {},
-  "searchModels": "Search models",
-  "@searchModels": {},
-  "apiKeyRequired": "API Key is required to fetch models",
-  "@apiKeyRequired": {},
-  "apiKey": "API Key",
-  "@apiKey": {},
-  "aiExplainWord": "AI Explain Word",
-  "@aiExplainWord": {},
-  "outputType": "Output Type",
-  "@outputType": {},
-  "richOutput": "Rich Output",
-  "@richOutput": {},
-  "simpleOutput": "Simple Output",
-  "@simpleOutput": {},
-  "enterTextToTranslate": "Enter text to translate",
-  "@enterTextToTranslate": {},
-  "translate": "Translate",
-  "@translate": {},
-  "sourceLanguage": "Source Language",
-  "@sourceLanguage": {},
-  "targetLanguage": "Target Language",
-  "@targetLanguage": {},
   "termsOfService": "Terms of Service",
   "@termsOfService": {},
-  "autoDetect": "Auto Detect",
-  "@autoDetect": {},
-  "checkForUpdates": "Check for Updates",
-  "@checkForUpdates": {},
-  "updateAvailable": "Update Available",
-  "@updateAvailable": {},
-  "updateAvailableContent": "New version {version} is available. Do you want to update?",
-  "@updateAvailableContent": {
-    "placeholders": {
-      "version": {
-        "type": "String"
-      }
-    }
-  },
   "update": "Update",
   "@update": {},
-  "noUpdateAvailable": "No update available",
-  "@noUpdateAvailable": {},
-  "updateCheckFailed": "Check update failed",
-  "@updateCheckFailed": {},
-  "includePrerelease": "Include Prerelease Updates",
-  "@includePrerelease": {},
-  "checkingForUpdates": "Checking for updates...",
-  "@checkingForUpdates": {},
-  "aiExplainWordPrompt": "Explain Word Prompt",
-  "@aiExplainWordPrompt": {},
-  "customExplainPromptHelper": "You can use $word and $targetLanguage in your prompt.",
-  "@customExplainPromptHelper": {},
-  "aiTranslatePrompt": "AI Translate Prompt",
-  "@aiTranslatePrompt": {},
-  "customTranslatePromptHelper": "You can use $sourceLanguage, $targetLanguage, and $text in your prompt.",
-  "@customTranslatePromptHelper": {},
   "tabBarPosition": "TabBar Position in Word Display",
   "@tabBarPosition": {},
   "showSearchBarInWordDisplayPage": "Show Search Bar in Word Display",
   "@showSearchBarInWordDisplayPage": {},
-  "autoUpdate": "Auto Update",
-  "@autoUpdate": {},
-  "legacyImport": "Import (Legacy, will be removed in future)",
-  "@legacyImport": {},
   "audioSettings": "Audio Settings",
   "@audioSettings": {},
   "ttsEngines": "TTS Engines",
   "@ttsEngines": {},
   "ttsLanguages": "TTS Languages",
   "@ttsLanguages": {},
-  "apiUrl": "API Url",
-  "@apiUrl": {},
   "floatingWindow": "Floating Window",
   "@floatingWindow": {},
   "loading": "Loading...",
   "@loading": {},
-  "addingWord": "Adding Word: {word}",
-  "@addingWord": {
-    "placeholders": {
-      "word": {
-        "type": "String"
-      }
-    }
-  },
-  "copyingFiles": "Copying Files...",
-  "@copyingFiles": {},
-  "addingResource": "Adding Resource: {resource}",
-  "@addingResource": {
-    "placeholders": {
-      "resource": {
-        "type": "String"
-      }
-    }
-  },
   "other": "Other",
   "@other": {},
   "about": "About",
   "@about": {},
-  "backup": "Backup",
-  "@backup": {},
-  "cloudSync": "Cloud sync",
-  "@cloudSync": {},
-  "cloudSyncDescription": "Preview and merge your wordbook and review progress, and choose dictionaries to sync across devices.",
-  "@cloudSyncDescription": {},
-  "cloudSyncProviderType": "Storage provider",
-  "@cloudSyncProviderType": {},
-  "cloudSyncProviderWebDav": "WebDAV",
-  "@cloudSyncProviderWebDav": {},
-  "cloudSyncProviderSftp": "SFTP",
-  "@cloudSyncProviderSftp": {},
-  "cloudSyncProviderS3": "S3-compatible storage",
-  "@cloudSyncProviderS3": {},
-  "cloudSyncWebDavUrl": "WebDAV server URL",
-  "@cloudSyncWebDavUrl": {},
-  "cloudSyncSftpUrl": "SFTP server URL",
-  "@cloudSyncSftpUrl": {},
-  "cloudSyncSftpUsername": "SFTP username",
-  "@cloudSyncSftpUsername": {},
-  "cloudSyncSftpFingerprint": "SSH host-key SHA-256 fingerprint",
-  "@cloudSyncSftpFingerprint": {},
-  "cloudSyncSftpFingerprintHint": "Required for secure SSH verification. Get the SHA256 fingerprint from your server administrator; paste the SHA256:... value.",
-  "@cloudSyncSftpFingerprintHint": {},
-  "cloudSyncSftpCredentialsHint": "Enter a password, import a private key, or provide both. The host-key fingerprint is required.",
-  "@cloudSyncSftpCredentialsHint": {},
-  "cloudSyncSftpPassword": "SFTP password (optional)",
-  "@cloudSyncSftpPassword": {},
-  "cloudSyncSftpSavedPrivateKey": "A private key is saved securely.",
-  "@cloudSyncSftpSavedPrivateKey": {},
-  "cloudSyncSftpPrivateKey": "Import SSH private key",
-  "@cloudSyncSftpPrivateKey": {},
-  "cloudSyncSftpPrivateKeySelected": "Private key selected: {name}",
-  "@cloudSyncSftpPrivateKeySelected": {
-    "placeholders": { "name": { "type": "String" } }
-  },
-  "cloudSyncSftpRemovePrivateKey": "Remove key",
-  "@cloudSyncSftpRemovePrivateKey": {},
-  "cloudSyncSftpKeyPassphrase": "Private-key passphrase (optional)",
-  "@cloudSyncSftpKeyPassphrase": {},
-  "cloudSyncS3Endpoint": "S3 endpoint URL",
-  "@cloudSyncS3Endpoint": {},
-  "cloudSyncS3Bucket": "Bucket",
-  "@cloudSyncS3Bucket": {},
-  "cloudSyncS3Region": "Region",
-  "@cloudSyncS3Region": {},
-  "cloudSyncS3AccessKey": "Access key ID",
-  "@cloudSyncS3AccessKey": {},
-  "cloudSyncS3SecretKey": "Secret access key",
-  "@cloudSyncS3SecretKey": {},
-  "cloudSyncS3SecretHint": "Leave blank to keep the saved secret.",
-  "@cloudSyncS3SecretHint": {},
-  "cloudSyncS3PathStyle": "Use path-style addressing (recommended for MinIO)",
-  "@cloudSyncS3PathStyle": {},
-  "cloudSyncS3Hint": "Use HTTPS except for local development. For AWS or R2, disable path-style addressing; for MinIO, it is usually enabled.",
-  "@cloudSyncS3Hint": {},
-  "cloudSyncRemoteFolder": "Remote folder",
-  "@cloudSyncRemoteFolder": {},
-  "cloudSyncUsername": "Username (optional)",
-  "@cloudSyncUsername": {},
-  "cloudSyncPassword": "Password (optional)",
-  "@cloudSyncPassword": {},
-  "cloudSyncPasswordHint": "Leave blank to keep the saved password.",
-  "@cloudSyncPasswordHint": {},
-  "cloudSyncPreviewButton": "Preview changes",
-  "@cloudSyncPreviewButton": {},
-  "cloudSyncConfirmButton": "Confirm and sync",
-  "@cloudSyncConfirmButton": {},
-  "cloudSyncNow": "Sync now",
-  "@cloudSyncNow": {},
-  "cloudSyncDisconnect": "Disconnect",
-  "@cloudSyncDisconnect": {},
-  "cloudSyncSavedProfile": "Connected to {provider}",
-  "@cloudSyncSavedProfile": {
-    "placeholders": { "provider": { "type": "String" } }
-  },
-  "cloudSyncPreviewHeading": "Sync preview",
-  "@cloudSyncPreviewHeading": {},
-  "cloudSyncFolderMissing": "The folder does not exist yet. It will be created after you confirm.",
-  "@cloudSyncFolderMissing": {},
-  "cloudSyncPreviewIntro": "Review the contents before syncing to {folder}.",
-  "@cloudSyncPreviewIntro": {
-    "placeholders": {
-      "folder": { "type": "String" }
-    }
-  },
-  "cloudSyncLocalSummary": "This device: {words} words, {tags} tags, {cards} cards, {reviews} reviews",
-  "@cloudSyncLocalSummary": {
-    "placeholders": {
-      "words": { "type": "int" },
-      "tags": { "type": "int" },
-      "cards": { "type": "int" },
-      "reviews": { "type": "int" }
-    }
-  },
-  "cloudSyncRemoteSummary": "Cloud: {words} words, {tags} tags, {cards} cards, {reviews} reviews",
-  "@cloudSyncRemoteSummary": {
-    "placeholders": {
-      "words": { "type": "int" },
-      "tags": { "type": "int" },
-      "cards": { "type": "int" },
-      "reviews": { "type": "int" }
-    }
-  },
-  "cloudSyncMergedSummary": "After sync: {words} words, {tags} tags, {cards} cards, {reviews} reviews",
-  "@cloudSyncMergedSummary": {
-    "placeholders": {
-      "words": { "type": "int" },
-      "tags": { "type": "int" },
-      "cards": { "type": "int" },
-      "reviews": { "type": "int" }
-    }
-  },
-  "cloudSyncRemoteDevices": "Remote devices: {count}",
-  "@cloudSyncRemoteDevices": {
-    "placeholders": {
-      "count": { "type": "int" }
-    }
-  },
-  "cloudSyncConflicts": "Conflicts found: {count}. Sync will preserve the changes and will not apply data until conflicts are resolved.",
-  "@cloudSyncConflicts": {
-    "placeholders": {
-      "count": { "type": "int" }
-    }
-  },
-  "cloudSyncNoConflicts": "No conflicts detected.",
-  "@cloudSyncNoConflicts": {},
-  "cloudSyncDictionaries": "Dictionaries",
-  "@cloudSyncDictionaries": {},
-  "cloudSyncDictionaryHint": "Choose which dictionaries to upload or download. Unchecked dictionaries won't be transferred.",
-  "@cloudSyncDictionaryHint": {},
-  "cloudSyncDictionaryUpload": "On this device · upload",
-  "@cloudSyncDictionaryUpload": {},
-  "cloudSyncDictionaryDownload": "In cloud · download",
-  "@cloudSyncDictionaryDownload": {},
-  "cloudSyncDictionarySynced": "Already on both sides",
-  "@cloudSyncDictionarySynced": {},
-  "cloudSyncDictionaryEmpty": "No dictionaries are available to sync.",
-  "@cloudSyncDictionaryEmpty": {},
-  "cloudSyncDictionaryDetails": "{files} files · {size}",
-  "@cloudSyncDictionaryDetails": {
-    "placeholders": {
-      "files": { "type": "int" },
-      "size": { "type": "String" }
-    }
-  },
-  "cloudSyncSyncComplete": "Sync complete.",
-  "@cloudSyncSyncComplete": {},
-  "cloudSyncSyncFailed": "Could not complete cloud sync. Check your server URL and credentials.",
-  "@cloudSyncSyncFailed": {},
-  "cloudSyncCredentialsPair": "Enter both a username and a password, or leave both blank.",
-  "@cloudSyncCredentialsPair": {},
-  "cloudSyncDisconnected": "Cloud sync disconnected.",
-  "@cloudSyncDisconnected": {},
   "advance": "Advance",
   "@advance": {},
   "advanceSwitchDescription": "Enable to show more settings options",
@@ -504,14 +204,8 @@
   "@twoPassLookupDescription": {},
   "hunspellDictionarySettings": "Hunspell dictionary settings",
   "@hunspellDictionarySettings": {},
-  "optionalWordFormLookup": "Optional word-form lookup",
-  "@optionalWordFormLookup": {},
   "changelog": "Changelog",
   "@changelog": {},
-  "editAIExplanation": "Edit AI Explanation",
-  "@editAIExplanation": {},
-  "enterAIExplanation": "Enter AI Explanation",
-  "@enterAIExplanation": {},
   "save": "Save",
   "@save": {},
   "dictionarySwitchStyle": "Dictionary Switch Style",
@@ -548,26 +242,8 @@
       }
     }
   },
-  "writingCheck": "Writing Check",
-  "@writingCheck": {},
-  "label_enter_to_check": "Enter text to check",
-  "@label_enter_to_check": {},
-  "check": "Check",
-  "@check": {},
-  "resetToDefault": "Reset to Default",
-  "@resetToDefault": {},
-  "writingCheckPromptTitle": "Writing Check Prompt",
-  "@writingCheckPromptTitle": {},
-  "writingCheckPromptHelper": "You can use $text and $targetLanguage in your prompt.",
-  "@writingCheckPromptHelper": {},
   "logs": "Logs",
   "@logs": {},
-  "translationProvider": "Translation Provider",
-  "@translationProvider": {},
-  "searchLanguage": "Search language",
-  "@searchLanguage": {},
-  "writingCheckHistory": "Writing Check History",
-  "@writingCheckHistory": {},
   "nSelected": "{count} selected",
   "@nSelected": {
     "placeholders": {
@@ -576,24 +252,6 @@
       }
     }
   },
-  "translationHistory": "Translation History",
-  "@translationHistory": {},
-  "enableTranslationHistory": "Enable Translation History",
-  "@enableTranslationHistory": {},
-  "enableWritingCheckHistory": "Enable Writing Check History",
-  "@enableWritingCheckHistory": {},
-  "alternatives": "Alternatives",
-  "@alternatives": {},
-  "openLink": "Open link",
-  "@openLink": {},
-  "copyLink": "Copy link",
-  "@copyLink": {},
-  "sponsorSupportTip": "Your support will help the project develop continuously ❤",
-  "@sponsorSupportTip": {},
-  "sponsorCodes": "Sponsor codes",
-  "@sponsorCodes": {},
-  "wechat": "WeChat",
-  "@wechat": {},
   "pressAgainToExit": "Press back again to exit",
   "@pressAgainToExit": {},
   "autoFocusSearch": "Auto Focus Search Bar",
@@ -617,5 +275,57 @@
   "previousWord": "Previous word",
   "@previousWord": {},
   "nextWord": "Next word",
-  "@nextWord": {}
+  "@nextWord": {},
+  "dictLibrary": "Dictionary library",
+  "@dictLibrary": {},
+  "dictLibraryLoadFailed": "Failed to load the dictionary library",
+  "@dictLibraryLoadFailed": {},
+  "dictInstallFailed": "Failed to install the dictionary",
+  "@dictInstallFailed": {},
+  "installedSuccessfully": "Installed successfully",
+  "@installedSuccessfully": {},
+  "installed": "Installed",
+  "@installed": {},
+  "download": "Download",
+  "@download": {},
+  "retry": "Retry",
+  "@retry": {},
+  "schoolSync": "School sync",
+  "@schoolSync": {},
+  "schoolSyncNotManaged": "This device is not managed by the school, or no student is logged in. Please log in on the school device management app first.",
+  "@schoolSyncNotManaged": {},
+  "schoolSyncAndroidOnly": "School sync is only available on school-managed Android devices.",
+  "@schoolSyncAndroidOnly": {},
+  "loggedInAs": "Logged in as {username}",
+  "@loggedInAs": {
+    "placeholders": {
+      "username": {
+        "type": "String"
+      }
+    }
+  },
+  "syncNow": "Sync now",
+  "@syncNow": {},
+  "syncOnStartup": "Sync on startup",
+  "@syncOnStartup": {},
+  "syncCompleted": "Sync completed",
+  "@syncCompleted": {},
+  "lastSync": "Last sync",
+  "@lastSync": {},
+  "neverSynced": "Never synced",
+  "@neverSynced": {},
+  "logout": "Log out",
+  "@logout": {},
+  "authorizeAndSync": "Authorize and sync",
+  "@authorizeAndSync": {},
+  "copyingFiles": "Copying files...",
+  "@copyingFiles": {},
+  "addingResource": "Adding {resource}...",
+  "@addingResource": {
+    "placeholders": {
+      "resource": {
+        "type": "String"
+      }
+    }
+  }
 }

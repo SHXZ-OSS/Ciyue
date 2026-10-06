@@ -5,12 +5,9 @@ import "package:provider/provider.dart";
 
 import "about_tile.dart";
 import "changelog_tile.dart";
-import "discord_tile.dart";
-import "feedback_tile.dart";
+import "fork_tile.dart";
 import "github_tile.dart";
 import "privacy_policy_tile.dart";
-import "qq_group_tile.dart";
-import "sponsor_tile.dart";
 import "terms_of_service_tile.dart";
 
 class AboutSettingsPage extends StatelessWidget {
@@ -27,11 +24,8 @@ class AboutSettingsPage extends StatelessWidget {
             constraints: const BoxConstraints(maxWidth: 500),
             child: ListView(
               children: const [
-                FeedbackTile(),
                 GithubTile(),
-                DiscordTile(),
-                QQGroupTile(),
-                SponsorListTile(),
+                ForkTile(),
                 TermsOfServicePageListTile(),
                 PrivacyPolicyPageListTile(),
                 ChangelogPageListTile(),

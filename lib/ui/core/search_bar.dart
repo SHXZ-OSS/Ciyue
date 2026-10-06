@@ -136,7 +136,6 @@ class _WordSearchBarWithSuggestionsState
                 }
 
                 return [
-                  if (settings.aiExplainWord) buildSuggestionTile(searchWord),
                   ...suggestions.dictionarySuggestions.map(buildSuggestionTile),
                   if (suggestions.spellingSuggestions.isNotEmpty)
                     Padding(
